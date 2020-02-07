@@ -33,7 +33,7 @@ app.post('/api/save', async (req, res) => {
         const item = new Item({
             title: req.body.title,
             author: req.body.author,
-            imagePath: req.body.imagePath.replace('', '_'),
+            imagePath: req.body.imagePath.split(' ').join('_'),
             isbn: req.body.isbn,
             category: req.body.category
         });
