@@ -1,7 +1,7 @@
 <template>
   <div class="search">
     <h1>Add a book</h1>
-    <form @submit.prevent="login" class="pure-form pure-form-aligned">
+    <form @submit.prevent="search" class="pure-form pure-form-aligned">
       <fieldset>
       <div class="pure-control-group">
         <!-- <label for="isbn">Username</label> -->
@@ -22,12 +22,23 @@ export default {
   name: 'search',
   data() {
     return {
-      isbn: ''
+      isbn: '',
+      error: ''
     }
   },
   methods: {
+    /**
+     * Queries for book data usinb isbn and pushes to store
+     */
     async search() {
-      console.log(`Searching for isbn: ${this.isbn}`);
+      try {
+        this.error = await this.$store.dispatch('search', this.isbn);
+        if (this.error === '') {
+          // move to next component somehow. Emit?
+        }
+      } catch (error) {
+        console.error(error);
+      }
     }
   }
 }

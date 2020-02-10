@@ -7,7 +7,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     books: [],
-    username: null
+    username: null,
+    searchResult: null
   },
   mutations: {
     setBooks(state, books) {
@@ -18,6 +19,9 @@ export default new Vuex.Store({
     },
     setUsername(state, username) {
       state.username = username;
+    },
+    setSearchResult(state, result) {
+      state.searchResult = result;
     }
   },
   actions: {
@@ -31,7 +35,7 @@ export default new Vuex.Store({
     async login(context, data) {
       try {
         context.commit('setUsername', data.username);
-        return data.username
+        return ''; // returning an empty string since my old code relied on empty strings to handle errors
       } catch (error) {
         return error.response.data.message;
       }
@@ -42,9 +46,10 @@ export default new Vuex.Store({
      */
     async getBooks(context) {
       try {
-        const { data } = await axios.get("/api/books");
+        console.log('getting books');
+        const { data } = await axios.get('/api/books');
         context.commit('setBooks', data);
-        return ''; // does this really need to return a string?
+        return ''; // returning an empty string since my old code relied on empty strings for error handling
       } catch (error) {
         console.error(error);
         return error;
@@ -61,14 +66,29 @@ export default new Vuex.Store({
         try {
           const { data } = await axios.post('/api/save', data);
           // should this commit the book to the books array here?
+          // probably not since the home page retrieves all books on creation
+          // could make the home page check if there are already books in state
+          return ''; // returning an empty string since my old code relied on empty string for errors
         } catch (error) {
           console.error(error);
-          return '';
+          return error;
         }
       } 
       
       return '';
-    } 
+    },
+    async search(context, isbn) {
+      try {
+        const { data } = await axios.get(
+          `http://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data`
+        )
+        context.commit('setSearchResult', data);
+        return '';
+      } catch (error) {
+        console.error(error);
+        return error;
+      }
+    }
   },
   modules: {
   }
