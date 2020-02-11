@@ -7,12 +7,16 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     books: [],
+    categories: [],
     username: null,
     searchResult: null
   },
   mutations: {
     setBooks(state, books) {
       state.books = books;
+    },
+    setCategories(state, categories) {
+      state.categories = categories;
     },
     addBook(state, book) {
       state.books.push(book);
@@ -41,14 +45,17 @@ export default new Vuex.Store({
       }
     },
     /**
-     * This retrieves an array of all books stored in the database
+     * This retrieves an array of all books and categories object stored in the database
      * @param {*} context 
      */
     async getBooks(context) {
       try {
         console.log('getting books');
         const { data } = await axios.get('/api/books');
-        context.commit('setBooks', data);
+
+        context.commit('setBooks', data.books);
+        context.commit('setCategories', data.categories);
+
         return ''; // returning an empty string since my old code relied on empty strings for error handling
       } catch (error) {
         console.error(error);
