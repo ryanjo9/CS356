@@ -26,6 +26,9 @@ export default new Vuex.Store({
     },
     setSearchResult(state, result) {
       state.searchResult = result;
+    },
+    setCategories(state, categories) {
+      state.categories = categories;
     }
   },
   actions: {

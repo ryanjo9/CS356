@@ -19,31 +19,35 @@ mongoose.connect('mongodb://localhost:27017/bookstore', {
 app.listen(3000, () => console.log('Server listening on port 3000!'));
 
 const itemSchema = new mongoose.Schema({
-  title: String,
-  author: String,
-  imagePath: String,
-  isbn: String,
-  category: String
+    title: String,
+    author: String,
+    imagePath: String,
+    isbn: String,
+    category: String,
+    price: Number,
+    condition: String
 });
 
 const Item = mongoose.model('Item', itemSchema);
 
 app.post('/api/save', async (req, res) => {
-  try {
-    const item = new Item({
-      title: req.body.title,
-      author: req.body.author,
-      imagePath: req.body.imagePath.split(' ').join('_'),
-      isbn: req.body.isbn,
-      category: req.body.category
-    });
+    try {
+        const item = new Item({
+            title: req.body.title,
+            author: req.body.author,
+            imagePath: req.body.imagePath.split(' ').join('_'),
+            isbn: req.body.isbn,
+            category: req.body.category,
+            price: req.body.price,
+            condition: req.body.condition
+        });
 
-    await item.save();
-    res.send(item);
-  } catch (error) {
-    console.log(error);
-    res.sendStatus(500);
-  }
+        await item.save();
+        res.send(item);
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(500);
+    }
 });
 
 app.get('/api/books', async (req, res) => {
