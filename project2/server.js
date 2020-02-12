@@ -35,7 +35,7 @@ app.post('/api/save', async (req, res) => {
         const item = new Item({
             title: req.body.title,
             author: req.body.author,
-            imagePath: req.body.imagePath.split(' ').join('_'),
+            imagePath: `${req.body.title.split(' ').join('_')}.jpg`,
             isbn: req.body.isbn,
             category: req.body.category,
             price: req.body.price,
