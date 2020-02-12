@@ -48,6 +48,7 @@
       </div>
     </nav>
     </div>
+    <router-view/>
   </div>
 </template>
 
