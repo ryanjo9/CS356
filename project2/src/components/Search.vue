@@ -2,17 +2,11 @@
   <div class="search">
     <h1>Add a book</h1>
     <form @submit.prevent="search" class="pure-form pure-form-aligned">
-      <fieldset>
-      <div class="pure-control-group">
-        <!-- <label for="isbn">Username</label> -->
+      <div>
         <input v-model="isbn" type="text" placeholder="Enter the ISB to autofill book info">
-      </div>
-
-      <div class="pure-controls">
-        <button type="submit" class="pure-button pure-button-primary">Next</button>
-        <button type="submit" class="pure-button pure-button-primary">Cancel</button>
-      </div>
-      </fieldset>
+        </div>
+        <button type="submit" class="btn btn-outline-warning">Next</button>
+        <button type="submit" class="btn btn-outline-secondary">Cancel</button>
     </form>
   </div>
 </template>
@@ -45,16 +39,10 @@ export default {
 </script>
 
 <style scoped>
-form {
-  border: 1px solid #ccc;
-  background-color: #eee;
-  border-radius: 4px;
-  padding: 20px;
-}
-.pure-controls {
-  display: flex;
-}
-.pure-controls button {
-  margin-left: auto;
+button{
+  width: 100px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
 }
 </style>
