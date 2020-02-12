@@ -26,28 +26,19 @@ export default {
   name: 'home',
   data() {
     return {
-      username: this.$store.state.username,
-      books: this.$store.state.books,
+      username: this.$store.state.username
     }
   },
   computed: {
-    categories: () => {
-      const categories = {}
-
-      this.books.forEach((book) => {
-        if (categories[book.category]) {
-          categories[book.category].push(book)
-        } else {
-          categories[book.category] = [book]
-        }
-      })
-
-      return categories
+    // a computed getter
+    books() {
+      // `this` points to the vm instance
+      return this.$store.state.books
+    },
+    categories(){
+      return this.$store.state.categories
     }
   },
-  // components: {
-  //   HelloWorld
-  // },
   async created() {
     await this.$store.dispatch('getBooks');
   }
