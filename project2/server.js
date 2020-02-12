@@ -32,6 +32,7 @@ const Item = mongoose.model('Item', itemSchema);
 
 app.post('/api/save', async (req, res) => {
     try {
+      console.log('req.body: ', req.body)
         const item = new Item({
             title: req.body.title,
             author: req.body.author,

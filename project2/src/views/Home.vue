@@ -5,7 +5,7 @@
     
     <ul id="example-3">
       <li v-for="(category, index) in categories" v-bind:key="index">
-        {{ index }}
+        <h1>{{ index }}</h1>
         <div>
           <ul id="example-2">
             <span v-for="(book, position) in category" v-bind:key="position">

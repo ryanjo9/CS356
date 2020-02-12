@@ -71,7 +71,8 @@ export default new Vuex.Store({
     async addBook(context, data) {
       if (data) {
         try {
-          const { data } = await axios.post('/api/save', data);
+          console.log('data: ', data);
+          await axios.post('/api/save', data);
           // should this commit the book to the books array here?
           // probably not since the home page retrieves all books on creation
           // could make the home page check if there are already books in state
@@ -89,7 +90,22 @@ export default new Vuex.Store({
         const { data } = await axios.get(
           `http://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data`
         )
-        context.commit('setSearchResult', data);
+
+        const body = data[`ISBN:${isbn}`]
+
+        if (body) {
+          const book = {
+            isbn,
+            title: body.title || null,
+            author: body.authors[0].name || null,
+            category: body.subjects[0].name || null,
+            imagePath: body.cover.medium || null
+          }
+
+          console.log('searchResult: ', book)
+          context.commit('setSearchResult', book);
+        }
+        
         return '';
       } catch (error) {
         console.error(error);

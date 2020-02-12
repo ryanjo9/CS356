@@ -1,16 +1,18 @@
 <template>
   <div class="add bg-text">
     <Search />
+    <Form />
   </div>
 </template>
 
 <script>
 import Search from '@/components/Search.vue'
-
+import Form from '@/components/Form.vue'
 export default {
   name: 'Add',
   components: {
-    Search
+    Search,
+    Form
   }
 }
 </script>
