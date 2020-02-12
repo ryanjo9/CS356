@@ -2,17 +2,20 @@
   <div class="home">
     <!-- This is just to remind us that it's there -->
     <p v-if="username">Welcome {{ username }} </p>
-    <!-- <HelloWorld msg="Usedbooks.com"/> -->
-    <ul id="example-2">
-      <li v-for="(book, index) in books" v-bind:key="index">
-        {{ book.author }} - {{ index }} - {{ book.title }}
-      </li>
-    </ul>
-
-
+    
     <ul id="example-3">
       <li v-for="(category, index) in categories" v-bind:key="index">
-        {{ category }} - {{ index }}
+        {{ index }}
+        <div>
+          <ul id="example-2">
+            <span v-for="(book, position) in category" v-bind:key="position">
+              <div>
+              {{ book.title }} - {{book.author}}
+              </div>
+            </span>
+          </ul>
+        </div>
+        <br>
       </li>
     </ul>
   </div>
