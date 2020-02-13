@@ -10,7 +10,7 @@
         <input v-model="price" type="text" placeholder="Price">
       </div>
       <button type="submit" class="btn btn-outline-warning">Submit</button>
-      <button type="submit" class="btn btn-outline-secondary">Cancel</button>
+      <button type="submit" v-on:click="cancel" class="btn btn-outline-secondary">Cancel</button>
     </form>
   </div>
 </template>
@@ -18,18 +18,23 @@
 <script>
 export default {
   name: 'Form',
+  props: ['bookData'],
   data() {
     return {
-      isbn: '',
-      title: '',
-      author: '',
-      category: '',
+      isbn: this.bookData.isbn || '',
+      title: this.bookData.title || '',
+      author: this.bookData.author || '',
+      category: this.bookData.category || '',
       condition: '',
       price: '',
       error: ''
     }
   },
   methods: {
+    async cancel() {
+      this.$store.dispatch('clearBook')
+      this.$router.push('/')
+    },
     async add() {
       if (
         !this.isbn ||
@@ -55,6 +60,10 @@ export default {
         category: this.category,
         condition: this.condition,
         price: Number(this.price)
+      }
+
+      if (this.bookData.imagePath) {
+        book.imagePath = this.bookData.imagePath;
       }
 
       try {

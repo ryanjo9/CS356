@@ -8,8 +8,9 @@ export default new Vuex.Store({
   state: {
     books: [],
     categories: [],
+    searchResult: [],
     username: null,
-    searchResult: null
+    bookData: null
   },
   mutations: {
     setBooks(state, books) {
@@ -26,6 +27,9 @@ export default new Vuex.Store({
     },
     setSearchResult(state, result) {
       state.searchResult = result;
+    },
+    setBookData(state, book) {
+      state.bookData = book;
     }
   },
   actions: {
@@ -102,15 +106,21 @@ export default new Vuex.Store({
             imagePath: body.cover.medium || null
           }
 
-          console.log('searchResult: ', book)
-          context.commit('setSearchResult', book);
+          context.commit('setBookData', book);
+          return book
+        } else {
+          context.commit('setBookData', {})
+          return {}
         }
         
-        return '';
       } catch (error) {
         console.error(error);
         return error;
       }
+    },
+    clearBook(context) {
+      context.commit('setBookData', null)
+      return ''
     }
   },
   modules: {

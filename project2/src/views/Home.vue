@@ -12,6 +12,8 @@
               <div>
                 <img :src="book.imagePath"/>
               {{ book.title }} - {{book.author}}
+              Condition: {{ book.condition }}
+              Price: {{ book.price }}
               </div>
             </span>
           </ul>

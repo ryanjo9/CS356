@@ -1,7 +1,11 @@
 <template>
   <div class="add bg-text">
-    <Search />
-    <Form />
+    <div v-if="searchDone">
+      <Search v-on:searchDone="switchView"/>
+    </div>
+    <div v-else>
+      <Form :bookData.sync="bookData"/>
+    </div>
   </div>
 </template>
 
@@ -13,6 +17,19 @@ export default {
   components: {
     Search,
     Form
+  },
+  data() {
+    return {
+      searchDone: this.$store.bookData !== null,
+      bookData: null
+    }
+  },
+  methods: {
+    switchView(data) {
+      console.log('switching view')
+      this.bookData = data
+      this.searchDone = !this.searchDone
+    }
   }
 }
 </script>
