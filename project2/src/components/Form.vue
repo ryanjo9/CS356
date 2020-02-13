@@ -2,12 +2,12 @@
   <div class="Form">
     <form @submit.prevent="add" class="pure-form pure-form-aligned">
       <div>
-        <input v-model="isbn" type="text" placeholder="isbn">
-        <input v-model="title" type="text" placeholder="Title">
-        <input v-model="author" type="text" placeholder="Author">
-        <input v-model="category" type="text" placeholder="Category">
-        <input v-model="condition" type="text" placeholder="Condition">
-        <input v-model="price" type="text" placeholder="Price">
+        <input v-model="isbn" type="text" placeholder="isbn"><br/><br/>
+        <input v-model="title" type="text" placeholder="Title"><br/><br/>
+        <input v-model="author" type="text" placeholder="Author"><br/><br/>
+        <input v-model="category" type="text" placeholder="Category"><br/><br/>
+        <input v-model="condition" type="text" placeholder="Condition"><br/><br/>
+        <input v-model="price" type="text" placeholder="Price"><br/><br/>
       </div>
       <button type="submit" class="btn btn-outline-warning">Submit</button>
       <button type="submit" v-on:click="cancel" class="btn btn-outline-secondary">Cancel</button>
