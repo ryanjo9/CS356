@@ -10,6 +10,7 @@
           <ul id="example-2">
             <span v-for="(book, position) in category" v-bind:key="position">
               <div>
+                <img :src="book.imagePath"/>
               {{ book.title }} - {{book.author}}
               </div>
             </span>

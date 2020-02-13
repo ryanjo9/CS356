@@ -9,14 +9,16 @@ const books = [{
   isbn: '0671043218',
   category: 'Psychology',
   price: 12.99,
-  condition: 'Good'
+  condition: 'Good',
+  imagePath: 'https://images-na.ssl-images-amazon.com/images/I/51NVtjOrnqL._SY346_.jpg'
 }, {
   title: 'The Tipping Point',
   author: 'Malcom Gladwell',
   isbn: '0316346624',
   category: 'Psychology',
   price: 9.99,
-  condition: 'Poor'
+  condition: 'Poor',
+  imagePath: 'https://images-na.ssl-images-amazon.com/images/I/41xMQUGPu1L.jpg'
 }, {
   // technology
   title: 'The Master Algorithm',
@@ -24,42 +26,48 @@ const books = [{
   isbn: '0465094279',
   category: 'Technology',
   price: 15.99,
-  condition: 'Very Good'
+  condition: 'Very Good',
+  imagePath: 'https://images-na.ssl-images-amazon.com/images/I/514G9tMBXHL._SY346_.jpg'
 }, {
   title: 'Superintelligence',
   author: 'Nick Bostrom',
   isbn: '0198739834',
   category: 'Technology',
   price: 9.99,
-  condition: 'Poor'
+  condition: 'Poor',
+  imagePath: 'https://images-na.ssl-images-amazon.com/images/I/514G9tMBXHL._SY346_.jpg'
 }, {
   title: 'The Tipping Point',
   author: 'Malcom Gladwell',
   isbn: '0316346624',
   category: 'Psychology',
   price: 9.99,
-  condition: 'Poor'
+  condition: 'Poor',
+  imagePath: 'https://images-na.ssl-images-amazon.com/images/I/41xMQUGPu1L.jpg'
 }, {
   title: 'Outliers: The Story of Success',
   author: 'Malcom Gladwell',
   isbn: '0316017930',
   category: 'Psychology',
   price: 9.99,
-  condition: 'Like New'
+  condition: 'Like New',
+  imagePath: 'https://images-na.ssl-images-amazon.com/images/I/41uvQ6ytbkL.jpg'
 }, {
   title: 'Outliers: The Story of Success',
   author: 'Malcom Gladwell',
   isbn: '0316017930',
   category: 'Psychology',
   price: 19.99,
-  condition: 'Like New'
+  condition: 'Like New',
+  imagePath: 'https://images-na.ssl-images-amazon.com/images/I/41uvQ6ytbkL.jpg'
 }, {
   title: 'Emotional Intelligence 2.0',
   author: 'Travis Bradberry',
   isbn: '0974320625',
   category: 'Psychology',
   price: 19.99,
-  condition: 'Like New'
+  condition: 'Like New',
+  imagePath: 'https://images-na.ssl-images-amazon.com/images/I/515plB5rn9L._SY346_.jpg'
 }]
 
 const run = async () => {

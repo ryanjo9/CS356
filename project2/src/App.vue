@@ -25,102 +25,31 @@
           </form>
         </div>
       </nav>
-      <br>
-      <br>
-      <br>
 
-      <br><br>
-      <br>
+      <router-view/>
 
-      <br>
-      <br>
-      <br>
-
-      <br>
-      <br>
-      <br>
-      <br>
-
-      <br><br>
-      <br>
-
-      <br>
-      <br>
-      <br>
-
-      <br>
-      <br>
-      <br>
-      <br>
-
-      <br><br>
-      <br>
-
-      <br>
-      <br>
-      <br>
-
-      <br>
-      <br>
-      <br>
-      <br>
-
-      <br><br>
-      <br>
-
-      <br>
-      <br>
-      <br>
-
-      <br>
-      <br>
-      <br>
-      <br>
-
-      <br><br>
-      <br>
-
-      <br>
-      <br>
-      <br>
-
-      <br>
-      <br>
-      <br>
-      <br>
-
-      <br><br>
-      <br>
-
-      <br>
-      <br>
-      <br>
-
-      <br>
-
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">About <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pricing</a>
+            </li>
+          </ul>
+          <button>
+            <a href="#app"> <i class="material-icons">arrow_upward</i> </a>
           </button>
-          <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">About <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-              </li>
-            </ul>
-            <button>
-             <a href="#app"> <i class="material-icons">arrow_upward</i> </a>
-            </button>
-          </div>
-        </nav>
+        </div>
+      </nav>
     </div>
-    <router-view/>
   </div>
 </template>
 
