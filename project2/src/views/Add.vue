@@ -1,11 +1,26 @@
 <template>
-  <div class="add bg-text">
+  <div >
     <div v-if="searchDone">
       <Search v-on:searchDone="switchView"/>
     </div>
     <div v-else>
       <Form :bookData.sync="bookData"/>
     </div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
   </div>
 </template>
 

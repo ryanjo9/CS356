@@ -3,11 +3,13 @@
     <h1>Add a book</h1>
     <form @submit.prevent="search" class="pure-form pure-form-aligned">
       <div>
-        <input v-model="isbn" type="text" placeholder="Enter the ISB to autofill book info">
-        </div>
-        <button type="submit" class="btn btn-outline-warning">Next</button>
+        <input v-model="isbn" type="text" placeholder="Enter the ISB to autofill book info"><br />
+      </div>
+        <button type="submit" class="btn btn-outline-warning">Submit</button> 
         <button type="submit" v-on:click="cancel" class="btn btn-outline-secondary">Cancel</button>
+        <br/>
     </form>
+    <a href="#"> I'll Enter it manually </a>
   </div>
 </template>
 
