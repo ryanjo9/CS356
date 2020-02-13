@@ -6,7 +6,7 @@
         <input v-model="isbn" type="text" placeholder="Enter the ISB to autofill book info">
         </div>
         <button type="submit" class="btn btn-outline-warning">Next</button>
-        <button type="submit" class="btn btn-outline-secondary">Cancel</button>
+        <button type="submit" v-on:click="cancel" class="btn btn-outline-secondary">Cancel</button>
     </form>
   </div>
 </template>
@@ -21,15 +21,18 @@ export default {
     }
   },
   methods: {
+    async cancel() {
+      this.$store.dispatch('clearBook')
+      this.$router.push('/')
+    },
     /**
      * Queries for book data usinb isbn and pushes to store
      */
     async search() {
       try {
-        this.error = await this.$store.dispatch('search', this.isbn);
-        if (this.error === '') {
-          // move to next component somehow. Emit?
-        }
+        const result = await this.$store.dispatch('search', this.isbn);
+
+        this.$emit('searchDone', result);
       } catch (error) {
         console.error(error);
       }
