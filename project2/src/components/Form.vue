@@ -2,12 +2,29 @@
   <div class="Form">
     <form @submit.prevent="add" class="pure-form pure-form-aligned">
       <div>
-        <input v-model="isbn" type="text" placeholder="isbn"><br/><br/>
-        <input v-model="title" type="text" placeholder="Title"><br/><br/>
-        <input v-model="author" type="text" placeholder="Author"><br/><br/>
-        <input v-model="category" type="text" placeholder="Category"><br/><br/>
-        <input v-model="condition" type="text" placeholder="Condition"><br/><br/>
-        <input v-model="price" type="text" placeholder="Price"><br/><br/>
+        <span align="left">
+        <label>Isbn</label> &nbsp; <input v-model="isbn" type="text" placeholder="isbn"><br/><br/>
+        </span>
+
+        <span align="left">
+        <label>Tittle</label> &nbsp; <input v-model="title" type="text" placeholder="Title"><br/><br/>
+        </span>
+
+        <span align="left">
+        <label style=" margin-left: -5px">Author</label> &nbsp; <input v-model="author" type="text" placeholder="Author"><br/><br/>
+        </span>
+
+        <span>
+        <label style=" margin-left: -30px">Category</label>&nbsp;  <input v-model="category" type="text" placeholder="Category"><br/><br/>
+        </span>
+
+        <span>
+        <label style=" margin-left: -30px">Condition</label>&nbsp;  <input v-model="condition" type="text" placeholder="Condition"><br/><br/>
+        </span>
+
+        <span align="left">
+        <label>Price</label>&nbsp;  <input v-model="price" type="text" placeholder="Price"><br/><br/>
+        </span>
       </div>
       <button type="submit" class="btn btn-outline-warning">Submit</button>
       <button type="submit" v-on:click="cancel" class="btn btn-outline-secondary">Cancel</button>
