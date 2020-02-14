@@ -2,29 +2,12 @@
   <div class="Form">
     <form @submit.prevent="add" class="pure-form pure-form-aligned">
       <div>
-        <span align="left">
-        <label>Isbn</label> &nbsp; <input v-model="isbn" type="text" placeholder="isbn"><br/><br/>
-        </span>
-
-        <span align="left">
-        <label>Tittle</label> &nbsp; <input v-model="title" type="text" placeholder="Title"><br/><br/>
-        </span>
-
-        <span align="left">
-        <label style=" margin-left: -5px">Author</label> &nbsp; <input v-model="author" type="text" placeholder="Author"><br/><br/>
-        </span>
-
-        <span>
-        <label style=" margin-left: -30px">Category</label>&nbsp;  <input v-model="category" type="text" placeholder="Category"><br/><br/>
-        </span>
-
-        <span>
-        <label style=" margin-left: -30px">Condition</label>&nbsp;  <input v-model="condition" type="text" placeholder="Condition"><br/><br/>
-        </span>
-
-        <span align="left">
-        <label>Price</label>&nbsp;  <input v-model="price" type="text" placeholder="Price"><br/><br/>
-        </span>
+        <input v-model="isbn" type="text" placeholder="isbn" required><br/><br/>
+        <input v-model="title" type="text" placeholder="Title" required><br/><br/>
+        <input v-model="author" type="text" placeholder="Author" required><br/><br/>
+        <input v-model="category" type="text" placeholder="Category" required><br/><br/>
+        <input v-model="condition" type="text" placeholder="Condition" required><br/><br/>
+        <input v-model="price" type="text" placeholder="Price" required><br/><br/>
       </div>
       <button type="submit" class="btn btn-outline-warning">Submit</button>
       <button type="submit" v-on:click="cancel" class="btn btn-outline-secondary">Cancel</button>
@@ -64,10 +47,14 @@ export default {
         return;
       }
 
-      if (isNaN(this.price)) {
+      const price = this.price.replace('$', '');
+
+      if (isNaN(price)) {
         // error
         return;
       }
+
+      
 
       const book = {
         isbn: this.isbn,
@@ -75,7 +62,7 @@ export default {
         author: this.author,
         category: this.category,
         condition: this.condition,
-        price: Number(this.price)
+        price: Number(price)
       }
 
       if (this.bookData.imagePath) {

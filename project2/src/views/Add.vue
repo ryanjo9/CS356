@@ -41,7 +41,6 @@ export default {
   },
   methods: {
     switchView(data) {
-      console.log('switching view')
       this.bookData = data
       this.searchDone = !this.searchDone
     }
