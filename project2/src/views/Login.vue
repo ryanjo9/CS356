@@ -21,6 +21,19 @@
     </fieldset>
   </form>
   <p v-if="error" class="error">{{error}}</p>
+  <br />
+  <br />
+
+  <br />
+  <br />
+
+  <br />
+  <br />
+
+  <br />
+  <br />
+  <br />
+  
 </div>
 </template>
 
