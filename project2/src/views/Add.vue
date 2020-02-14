@@ -4,7 +4,7 @@
       <Search v-on:searchDone="switchView"/>
     </div>
     <div v-else>
-      <Form :bookData.sync="bookData"/>
+      <Form v-on:cancel="switchView" :bookData.sync="bookData"/>
     </div>
     <br/>
     <br/>

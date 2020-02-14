@@ -32,8 +32,7 @@ export default {
   },
   methods: {
     async cancel() {
-      this.$store.dispatch('clearBook')
-      this.$router.push('/')
+      this.$emit('cancel', null)
     },
     async add() {
       if (
