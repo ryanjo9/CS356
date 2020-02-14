@@ -23,15 +23,17 @@ export default {
   name: 'result',
   data() {
     return {
-      books: []
+      books: [],
+      value: String
     }
   },
   async created() {
     this.books = await this.$store.dispatch('getBooks');
+    this.value = this.$route.params.input.toLowerCase();
     this.books = this.books.filter((book) => {
         let add = false;
         Object.values(book).forEach((value) => {
-            if (typeof value === 'string' && value.toLowerCase().includes(this.$route.params.input.toLowerCase())) {
+            if (typeof value === 'string' && value.toLowerCase().includes(this.value)) {
                 add = true
             }
         })
