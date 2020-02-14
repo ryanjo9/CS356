@@ -20,8 +20,8 @@
             </li>
           </ul>
           <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" minlength="3" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Submit</button>
+            <input class="form-control mr-sm-2" minlength="3"  type="search" placeholder="Search" aria-label="Search" v-model="input">
+            <button class="btn btn-outline-success my-2 my-sm-0" @click="search" type="submit">Submit</button>
           </form>
         </div>
       </nav>
@@ -50,6 +50,25 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'app',
+  data() {
+    return {
+      input: ''
+    }
+  },
+  methods: {
+    search() {
+      if (this.input.length < 3) {
+        return
+      }
+      this.$router.push({ name: 'result', params: { input: this.input }}) 
+    }
+  }
+}
+</script>
 
 <style>
 #app {

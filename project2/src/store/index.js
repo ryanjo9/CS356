@@ -54,13 +54,12 @@ export default new Vuex.Store({
      */
     async getBooks(context) {
       try {
-        console.log('getting books');
         const { data } = await axios.get('/api/books');
 
         context.commit('setBooks', data.books);
         context.commit('setCategories', data.categories);
 
-        return ''; // returning an empty string since my old code relied on empty strings for error handling
+        return data.books; // returning an empty string since my old code relied on empty strings for error handling
       } catch (error) {
         console.error(error);
         return error;
@@ -75,7 +74,6 @@ export default new Vuex.Store({
     async addBook(context, data) {
       if (data) {
         try {
-          console.log('data: ', data);
           await axios.post('/api/save', data);
           // should this commit the book to the books array here?
           // probably not since the home page retrieves all books on creation
