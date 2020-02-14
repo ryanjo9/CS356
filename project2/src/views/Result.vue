@@ -31,7 +31,7 @@ export default {
     this.books = this.books.filter((book) => {
         let add = false;
         Object.values(book).forEach((value) => {
-            if (typeof value === 'string' && value.toLowerCase().includes(this.$route.params.input)) {
+            if (typeof value === 'string' && value.toLowerCase().includes(this.$route.params.input.toLowerCase())) {
                 add = true
             }
         })
