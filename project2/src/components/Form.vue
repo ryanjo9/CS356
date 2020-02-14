@@ -2,12 +2,12 @@
   <div class="Form">
     <form @submit.prevent="add" class="pure-form pure-form-aligned">
       <div>
-        <input v-model="isbn" type="text" placeholder="isbn" required><br/><br/>
-        <input v-model="title" type="text" placeholder="Title" required><br/><br/>
-        <input v-model="author" type="text" placeholder="Author" required><br/><br/>
-        <input v-model="category" type="text" placeholder="Category" required><br/><br/>
-        <input v-model="condition" type="text" placeholder="Condition" required><br/><br/>
-        <input v-model="price" type="text" placeholder="Price" required><br/><br/>
+        <label>ISBN</label> <input v-model="isbn" type="text" placeholder="isbn" required><br/><br/>
+        <label>Title</label> <input v-model="title" type="text" placeholder="Title" required><br/><br/>
+        <label>Author</label> <input v-model="author" type="text" placeholder="Author" required><br/><br/>
+        <label>Category</label> <input v-model="category" type="text" placeholder="Category" required><br/><br/>
+        <label>Condition</label> <input v-model="condition" type="text" placeholder="Condition" required><br/><br/>
+        <label>Price</label> <input v-model="price" type="text" placeholder="Price" required><br/><br/>
       </div>
       <button type="submit" class="btn btn-outline-warning">Submit</button>
       <button type="submit" v-on:click="cancel" class="btn btn-outline-secondary">Cancel</button>
@@ -88,6 +88,11 @@ export default {
     width: 100px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
+  margin-right: 10px;
+  }
+  label{
+    width: 60px;
+    margin-left: auto;
+    margin-right: 10px;
   }
 </style>
