@@ -4,7 +4,7 @@
     
     <ul id="example-2">
     <span v-for="(book, position) in books" v-bind:key="position">
-        <div>
+        <div class="polaroid">
         <img :src="book.imagePath"/>
         {{ book.title }} - {{book.author}}
         Condition: {{ book.condition }}
@@ -16,8 +16,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'result',
@@ -43,3 +41,6 @@ export default {
   }
 }
 </script>
+<style>
+
+</style>
