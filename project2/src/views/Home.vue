@@ -11,7 +11,7 @@
             <span v-for="(book, position) in category" v-bind:key="position">
               <section class="box">
                 <img  class="picture" :src="book.imagePath"/>
-                <span>{{ book.title }} - Author: {{book.author}} - Condition: {{ book.condition }}- Price: {{ book.price }}
+                <span>{{ book.title }} - Author: {{book.author}} - Condition: {{ book.condition }} - Price: {{ book.price }}
               </span>
               </section>
             </span>
