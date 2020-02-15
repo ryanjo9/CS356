@@ -7,6 +7,7 @@
         <label>Author</label> <input v-model="author" type="text" placeholder="Author" required><br/><br/>
         <label>Category</label> <input v-model="category" type="text" placeholder="Category" required><br/><br/>
         <label>Condition</label> <input v-model="condition" type="text" placeholder="Condition" required><br/><br/>
+        <label>Image URL</label> <input v-model="imagePath" type="text" placeholder="Image URL" required><br/><br/>
         <label>Price</label> <input v-model="price" type="text" placeholder="Price" required><br/><br/>
       </div>
       <button type="submit" class="btn btn-outline-warning">Submit</button>
@@ -27,6 +28,7 @@ export default {
       category: this.bookData.category || '',
       condition: '',
       price: '',
+      imagePath: '',
       error: ''
     }
   },
@@ -41,7 +43,7 @@ export default {
         !this.author || 
         !this.category ||
         !this.condition || 
-        !this.price
+        !this.price || !this.imagePath
       ) {
         // Incomplete data, don't save
         return;
@@ -62,6 +64,7 @@ export default {
         author: this.author,
         category: this.category,
         condition: this.condition,
+        imagePath: this.imagePath,
         price: Number(price)
       }
 
