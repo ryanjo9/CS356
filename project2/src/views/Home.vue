@@ -9,14 +9,11 @@
         <div>
           <ul id="example-2">
             <span v-for="(book, position) in category" v-bind:key="position">
-              <div class="box">
+              <section class="box">
                 <img  class="picture" :src="book.imagePath"/>
-                <span class="col-6 col-sm-4">
-              {{ book.title }} - {{book.author}}
-              Condition: {{ book.condition }}
-              Price: {{ book.price }}
+                <span>{{ book.title }} - Author: {{book.author}} - Condition: {{ book.condition }}- Price: {{ book.price }}
               </span>
-              </div>
+              </section>
             </span>
           </ul>
         </div>
@@ -58,6 +55,5 @@ export default {
 }
 .box{
   display: flex;
-  justify-content: center;
 }
 </style>
