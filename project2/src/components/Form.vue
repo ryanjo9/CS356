@@ -6,8 +6,8 @@
         <label>Title</label> <input v-model="title" type="text" placeholder="Title" required><br/><br/>
         <label>Author</label> <input v-model="author" type="text" placeholder="Author" required><br/><br/>
         <label>Category</label> <input v-model="category" type="text" placeholder="Category" required><br/><br/>
+        <label :v-show="checkURL">Image URL</label> <input :v-show="checkURL" v-model="imagePath" type="text" placeholder="Image URL" required><br/><br/>
         <label>Condition</label> <input v-model="condition" type="text" placeholder="Condition" required><br/><br/>
-        <label>Image URL</label> <input v-model="imagePath" type="text" placeholder="Image URL" required><br/><br/>
         <label>Price</label> <input v-model="price" type="text" placeholder="Price" required><br/><br/>
       </div>
       <button type="submit" class="btn btn-outline-warning">Submit</button>
@@ -28,13 +28,17 @@ export default {
       category: this.bookData.category || '',
       condition: '',
       price: '',
-      imagePath: '',
+      imagePath:'',
       error: ''
     }
   },
   methods: {
     async cancel() {
       this.$emit('cancel', null)
+    },
+    checkURL(){
+      if(this.imagePath.includes("amazon")) return true;
+      else return false;
     },
     async add() {
       if (
