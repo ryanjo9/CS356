@@ -28,7 +28,7 @@ export default {
       category: this.bookData.category || '',
       condition: '',
       price: '',
-      imagePath:'',
+      imagePath: this.bookData.imagePath || '',
       error: ''
     }
   },
@@ -47,7 +47,8 @@ export default {
         !this.author || 
         !this.category ||
         !this.condition || 
-        !this.price || !this.imagePath
+        !this.price || 
+        !this.imagePath
       ) {
         // Incomplete data, don't save
         return;
