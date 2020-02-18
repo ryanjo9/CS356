@@ -32,10 +32,9 @@ export default {
       category: this.bookData.category || '',
       condition: '',
       price: '',
-      imagePath:'',
+      imagePath: this.bookData.imagePath || '',
       error: '',
-      categories: ["Action and adventure","Anthology","Drama", "Fairytale", "History", "Technology", "Horror", "Diary",
-      "Health", "Science", "Psychology","Journal ", "Fiction & Fantasy"]
+      categories:["Action and adventure","Children's", "Autobiography","Biography","Diary","Health","History"]
     }
   },
   methods: {
@@ -53,7 +52,8 @@ export default {
         !this.author || 
         !this.category ||
         !this.condition || 
-        !this.price || !this.imagePath
+        !this.price || 
+        !this.imagePath
       ) {
         // Incomplete data, don't save
         return;
