@@ -7,7 +7,7 @@
         <label>Author</label> <input v-model="author" type="text" placeholder="Author" required/><br/><br/>
         <label>Category</label>
         <select v-model="category">
-            <option v-for="(category, position) in categories" v-bind:key="position" >{{ category}}</option>
+            <option v-for="(category, position) in categories" v-bind:key="position" style="align:center">{{category}}</option>
         </select>
         <br /> <br/>
         <label :v-show="checkURL">Image URL</label> <input :v-show="checkURL" v-model="imagePath" type="text" placeholder="Image URL" required/><br/><br/>
@@ -29,12 +29,12 @@ export default {
       isbn: this.bookData.isbn || '',
       title: this.bookData.title || '',
       author: this.bookData.author || '',
-      category: this.bookData.category || '',
+      category:'',
       condition: '',
       price: '',
       imagePath: this.bookData.imagePath || '',
       error: '',
-      categories:["Action and adventure","Children's", "Autobiography","Biography","Diary","Health","History"]
+      categories:["Action and adventure","Children's", "Autobiography","Biography","Diary","Health","History","Documentary"]
     }
   },
   methods: {
