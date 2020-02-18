@@ -33,7 +33,8 @@ export default {
       price: '',
       imagePath: this.bookData.imagePath || '',
       error: '',
-      categories:["Action and adventure","Children's", "Autobiography","Biography","Diary","Health","History","Documentary"]
+      categories:["Action and adventure","Children's", "Autobiography","Biography","Diary","Health","History","Documentary",
+      "Mystery","Religious","Comic book","Drama","Fairytale","Poetry","Romance","Fiction & Fantasy"]
     }
   },
   methods: {
