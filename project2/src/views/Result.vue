@@ -4,12 +4,12 @@
     
     <ul id="example-2">
     <span v-for="(book, position) in books" v-bind:key="position">
-        <div class="polaroid">
-        <img :src="book.imagePath"/>
+        <section class="box">
+        <img :src="book.imagePath" class="picture"/>
         {{ book.title }} - {{book.author}}
         Condition: {{ book.condition }}
         Price: {{ book.price }}
-        </div>
+        </section>
     </span>
     </ul>
   </div>
@@ -41,6 +41,11 @@ export default {
   }
 }
 </script>
-<style>
-
+<style scoped>
+.picture{
+  width:150px;
+}
+.box{
+  display: flex;
+}
 </style>
