@@ -52,6 +52,7 @@ export default {
 <style scoped>
 .picture{
   width:150px;
+  padding: 5px;
 }
 .box{
   display: flex;
