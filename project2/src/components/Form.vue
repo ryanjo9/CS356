@@ -8,8 +8,7 @@
         <label>Category</label>
         <select v-model="category">
             <option v-for="(category, position) in categories" v-bind:key="position" style="align:center">{{category}}</option>
-        </select>
-        <br /> <br/>
+        </select><br/>
         <label :v-show="checkURL">Image URL</label> <input :v-show="checkURL" v-model="imagePath" type="text" placeholder="Image URL" required/><br/><br/>
         <label>Condition</label> <input v-model="condition" type="text" placeholder="Condition" required/><br/><br/>
         <label>Price</label> <input v-model="price" type="text" placeholder="Price" required/><br/><br/>
@@ -107,5 +106,8 @@ export default {
     width: 60px;
     margin-left: auto;
     margin-right: 10px;
+  }
+  select{
+    width: 200px;
   }
 </style>
