@@ -107,8 +107,8 @@ export default new Vuex.Store({
           context.commit('setBookData', book);
           return book
         } else {
-          context.commit('setBookData', {})
-          return {}
+          context.commit('setBookData', { isbn })
+          return {isbn}
         }
         
       } catch (error) {
