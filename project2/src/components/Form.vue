@@ -33,7 +33,7 @@ export default {
       price: '',
       imagePath: this.bookData.imagePath || '',
       error: '',
-      categories:["Action and adventure","Children's", "Autobiography","Biography","Diary","Health","History","Documentary",
+      categories:["Action and adventure","Children's","Biography","Diary","Health","History","Documentary",
       "Mystery","Religious","Comic book","Drama","Fairytale","Poetry","Romance","Fiction & Fantasy","Psychology",
       "Horror","Technology","Politics","Thriller","Mathematics","Cookbook","Literature Reviews","Art","Science","Memoir"].sort()
     }
@@ -102,7 +102,7 @@ export default {
     width: 100px;
     text-align: center;
     text-decoration: none;
-  margin-right: 10px;
+    margin-right: 10px;
   }
   label{
     width: 60px;

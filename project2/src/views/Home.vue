@@ -37,7 +37,7 @@ export default {
   data() {
     return {
       username: this.$store.state.username,
-      data:["Action and adventure","Children's", "Autobiography","Biography","Diary","Health","History","Documentary",
+      data:["Action and adventure","Children's","Biography","Diary","Health","History","Documentary",
       "Mystery","Religious","Comic book","Drama","Fairytale","Poetry","Romance","Fiction & Fantasy","Psychology",
       "Horror","Technology","Politics","Thriller","Mathematics","Cookbook","Literature Reviews","Art","Science","Memoir"].sort()
     }
@@ -66,7 +66,7 @@ export default {
   display: flex;
 }
 .box1{
- float: left;
+  float: left;
   width: 25%;
   padding: 10px;
 }
