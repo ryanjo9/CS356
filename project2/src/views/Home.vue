@@ -2,6 +2,11 @@
   <div class="home">
     <!-- This is just to remind us that it's there -->
     <p v-if="username">Welcome {{ username }} </p>
+    <div class="box1">
+      <div class="list-group">
+        <a href="#" v-for="(category, index) in categories" v-bind:key="index" class="list-group-item list-group-item-action">{{index}}</a>
+      </div>
+    </div>
     
     <ul id="example-3">
       <li v-for="(category, index) in categories" v-bind:key="index">
@@ -56,5 +61,10 @@ export default {
 }
 .box{
   display: flex;
+}
+.box1{
+ float: left;
+  width: 25%;
+  padding: 10px;
 }
 </style>
