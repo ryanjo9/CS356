@@ -9,7 +9,7 @@
     </div>
     
     <ul id="example-3">
-      <li v-for="(category, index) in data" :key="index">
+      <span v-for="(category, index) in data" :key="index">
         <h1 v-bind:id="category"> {{ category }}</h1>
         <div>
           <ul id="example-2">
@@ -23,7 +23,7 @@
           </ul>
         </div>
         <br>
-      </li>
+      </span>
     </ul>
   </div>
 </template>
@@ -38,7 +38,7 @@ export default {
     return {
       username: this.$store.state.username,
       data:["Action and adventure","Children's", "Autobiography","Biography","Diary","Health","History","Documentary",
-      "Mystery","Religious","Comic book","Drama","Fairytale","Poetry","Romance","Fiction & Fantasy"].sort()
+      "Mystery","Religious","Comic book","Drama","Fairytale","Poetry","Romance","Fiction & Fantasy","Psychology","Horror","Technology"].sort()
     }
   },
   computed: {
