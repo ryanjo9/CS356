@@ -14,11 +14,13 @@
         <div>
           <ul id="example-2">
             <span v-for="(book, position) in categories[category]" v-bind:key="position">
-              <section class="box">
-                <img  class="picture" :src="book.imagePath"/>
-                <span>{{ book.title }} - Author: {{book.author}} - Condition: {{ book.condition }} - Price: {{ book.price }}
-              </span>
-              </section>
+              <router-link :to="{ name: 'edit', params: {id: book._id, book} }">
+                <section class="box">
+                  <img  class="picture" :src="book.imagePath"/>
+                  <span>{{ book.title }} - Author: {{book.author}} - Condition: {{ book.condition }} - Price: {{ book.price }}
+                </span>
+                </section>
+              </router-link>
             </span>
           </ul>
         </div>

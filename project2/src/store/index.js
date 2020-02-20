@@ -10,7 +10,8 @@ export default new Vuex.Store({
     categories: [],
     searchResult: [],
     username: null,
-    bookData: null
+    bookData: null,
+    editBook: null
   },
   mutations: {
     setBooks(state, books) {
@@ -30,6 +31,9 @@ export default new Vuex.Store({
     },
     setBookData(state, book) {
       state.bookData = book;
+    },
+    setEditBook(state, book) {
+      state.editBook = book
     }
   },
   actions: {
@@ -55,6 +59,7 @@ export default new Vuex.Store({
     async getBooks(context) {
       try {
         const { data } = await axios.get('/api/books');
+        console.log('data: ', data)
 
         context.commit('setBooks', data.books);
         context.commit('setCategories', data.categories);
@@ -119,6 +124,35 @@ export default new Vuex.Store({
     clearBook(context) {
       context.commit('setBookData', null)
       return ''
+    },
+    async editBook(context, data) {
+      console.log('editing book with : ', data)
+      if (data) {
+        try {
+          const book = await axios.put(`/api/books/${data._id}`, data);
+ 
+          return book; 
+        } catch (error) {
+          console.error(error);
+          return error;
+        }
+      } 
+      
+      return '';
+    },
+    async getBook(context, id) {
+      if (id) {
+        try {
+          const book = await axios.get(`/api/books/${id}`)
+          context.commit('setEditBook', book)
+          return book
+        } catch (error) {
+          console.error(error)
+          return null
+        }
+      }
+
+      return null
     }
   },
   modules: {

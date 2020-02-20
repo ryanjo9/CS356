@@ -70,3 +70,38 @@ app.get('/api/books', async (req, res) => {
     res.sendStatus(500);
   }
 })
+
+app.put('/api/books/:id', async (req, res) => {
+  try {
+    const item = await Item.findOne({
+      _id: req.params.id
+    });
+
+    item.title = req.body.title,
+    item.author = req.body.author,
+    item.imagePath = req.body.imagePath || `${req.body.title.split(' ').join('_')}.jpg`,
+    item.isbn = req.body.isbn,
+    item.category = req.body.category,
+    item.price = req.body.price,
+    item.condition = req.body.condition
+
+    await item.save()
+    res.send(item)
+  } catch (error) {
+    console.log(error)
+    res.sendStatus(500)
+  }
+})
+
+app.get('/api/books/:id', async (req, res) => {
+  try {
+    if (req.params.id){
+      res.send(await Item.findById(req.params.id))
+    } else {
+      res.sendStatus(404)
+    }
+  } catch (error) {
+    console.log(error)
+    res.sendStatus(500)
+  }
+})

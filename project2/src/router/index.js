@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Add from '../views/Add.vue'
 import Result from '../views/Result.vue'
+import Edit from '../views/Edit.vue'
 
 Vue.use(VueRouter)
 
@@ -30,6 +31,12 @@ const routes = [
     path: '/result/:input',
     name: 'result',
     component: Result,
+    props: true
+  },
+  {
+    path: '/edit/:id',
+    name: 'edit',
+    component: Edit,
     props: true
   }
 ]
