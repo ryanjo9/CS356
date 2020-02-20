@@ -38,7 +38,8 @@ export default {
     return {
       username: this.$store.state.username,
       data:["Action and adventure","Children's", "Autobiography","Biography","Diary","Health","History","Documentary",
-      "Mystery","Religious","Comic book","Drama","Fairytale","Poetry","Romance","Fiction & Fantasy","Psychology","Horror","Technology"].sort()
+      "Mystery","Religious","Comic book","Drama","Fairytale","Poetry","Romance","Fiction & Fantasy","Psychology",
+      "Horror","Technology","Politics","Thriller","Mathematics","Cookbook","Literature Reviews","Art","Science","Memoir"].sort()
     }
   },
   computed: {
