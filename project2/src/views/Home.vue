@@ -15,11 +15,15 @@
           <ul id="example-2">
             <span v-for="(book, position) in categories[category]" v-bind:key="position">
               <router-link :to="{ name: 'edit', params: {id: book._id, book} }">
-                <section class="box">
+                <div class="box">
                   <img  class="picture" :src="book.imagePath"/>
-                  <span>{{ book.title }} - Author: {{book.author}} - Condition: {{ book.condition }} - Price: {{ book.price }}
-                </span>
-                </section>
+                </div>
+                  <section class="box2">
+                    <h1 style="font-size:10px">Tittle: {{ book.title }} </h1>  
+                    <h2 style="font-size:8px"> Author: {{book.author}} </h2> 
+                    <h3 style="font-size:8px"> Condition: {{ book.condition }}</h3>
+                    <h4 style="font-size:8px">Price: {{ book.price }} </h4>
+                  </section>
               </router-link>
             </span>
           </ul>
@@ -63,6 +67,8 @@ export default {
 .picture{
   width:150px;
   padding: 5px;
+  position: relative;
+  margin-left: 5px;
 }
 .box{
   display: flex;
@@ -71,5 +77,9 @@ export default {
   float: left;
   width: 25%;
   padding: 10px;
+}
+.box2{
+  position: static;
+  display: table;
 }
 </style>
