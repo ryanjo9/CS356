@@ -19,10 +19,10 @@
                   <img  class="picture" :src="book.imagePath"/>
                 </div>
                   <section class="box2">
-                    <h1 style="font-size:10px">Tittle: {{ book.title }} </h1>  
-                    <h2 style="font-size:8px"> Author: {{book.author}} </h2> 
-                    <h3 style="font-size:8px"> Condition: {{ book.condition }}</h3>
-                    <h4 style="font-size:8px">Price: {{ book.price }} </h4>
+                    <h1 style="font-size:15px">{{ book.title }} </h1>  
+                    <h2 style="font-size:9px"> Author: {{book.author}} </h2> 
+                    <h3 style="font-size:9px"> Condition: {{ book.condition }}</h3>
+                    <h4 style="font-size:9px">Price: {{ book.price }} </h4>
                   </section>
               </router-link>
             </span>
@@ -81,5 +81,6 @@ export default {
 .box2{
   position: static;
   display: table;
+  width:150px;
 }
 </style>
