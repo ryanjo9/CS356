@@ -13,8 +13,8 @@
         <h1 v-bind:id="category"> {{ category }}</h1>
         <div>
           <ul id="example-2">
-            <list v-for="(book, position) in categories[category]" v-bind:key="position">
-              <span class="list">
+            <span class="list">
+              <list v-for="(book, position) in categories[category]" v-bind:key="position">
                 <router-link :to="{ name: 'edit', params: {id: book._id, book} }">
                     <img  class="picture" :src="book.imagePath"/>
                     <section class="box2">
@@ -24,8 +24,8 @@
                       <h4 style="font-size:9px">Price: {{ book.price }} </h4>
                     </section>
                 </router-link>
-              </span>
-            </list>
+              </list>
+            </span>
           </ul>
         </div>
         <br>
@@ -87,7 +87,7 @@ export default {
   flex-flow: row nowrap;
   align-items: center;
   position: relative;
-  flex-flow: row nowrap
+  flex-flow: row nowrap;
 } 
 .left-indicator,
 .right-indicator {
