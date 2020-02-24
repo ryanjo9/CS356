@@ -9,29 +9,27 @@
     </div>
     
     <ul id="example-3">
-      <span v-for="(category, index) in data" :key="index">
+      <section v-for="(category, index) in data" :key="index">
         <h1 v-bind:id="category"> {{ category }}</h1>
         <div>
           <ul id="example-2">
-            <span v-for="(book, position) in categories[category]" v-bind:key="position">
+            <list v-for="(book, position) in categories[category]" v-bind:key="position">
               <router-link :to="{ name: 'edit', params: {id: book._id, book} }">
-                <div class="scroll">
-                  <div class="box">
+                <span class="list">
                     <img  class="picture" :src="book.imagePath"/>
-                  </div>
                     <section class="box2">
                       <h1 style="font-size:15px">{{ book.title }} </h1>  
                       <h2 style="font-size:9px"> Author: {{book.author}} </h2> 
                       <h3 style="font-size:9px"> Condition: {{ book.condition }}</h3>
                       <h4 style="font-size:9px">Price: {{ book.price }} </h4>
                     </section>
-                </div>
+                </span>
               </router-link>
-            </span>
+            </list>
           </ul>
         </div>
         <br>
-      </span>
+      </section>
     </ul>
   </div>
 </template>
@@ -72,8 +70,6 @@ export default {
   padding: 5px;
   position: relative;
   margin-left: 5px;
-}
-.box{
   display: flex;
 }
 .box1{
@@ -86,7 +82,16 @@ export default {
   display: table;
   width:150px;
 }
-.scroll{
-
-}
+.list{
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  position: relative;
+  flex-flow: row nowrap
+} 
+.left-indicator,
+.right-indicator {
+    visibility: hidden;
+    width: 25px;
+  }
 </style>
