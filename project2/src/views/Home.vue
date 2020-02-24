@@ -81,12 +81,11 @@ export default {
   position: static;
   display: table;
   width:150px;
+  height: 180px;
 }
 .list{
   display: flex;
-  flex-flow: row nowrap;
   align-items: center;
-  position: relative;
   flex-flow: row nowrap;
 } 
 .left-indicator,
