@@ -87,6 +87,7 @@ export default {
   display: flex;
   align-items: center;
   flex-flow: row nowrap;
+  overflow: auto;
 } 
 .left-indicator,
 .right-indicator {
