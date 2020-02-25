@@ -3,12 +3,13 @@
     <!-- This is just to remind us that it's there -->
     
     <ul id="example-2">
-    <span v-for="(book, position) in books" v-bind:key="position">
-        <section class="box">
+    <span class="list" v-for="(book, position) in books" v-bind:key="position">
         <img :src="book.imagePath" class="picture"/>
-        {{ book.title }} - {{book.author}}
-        Condition: {{ book.condition }}
-        Price: {{ book.price }}
+        <section class="box2">
+          <h1 style="font-size:15px">{{ book.title }} </h1>  
+          <h2 style="font-size:10px"> Author: {{book.author}} </h2> 
+          <h2 style="font-size:10px"> Condition: {{ book.condition }}</h2>
+          <h2 style="font-size:10px">Price: {{ book.price }} </h2>
         </section>
     </span>
     </ul>
