@@ -25,12 +25,7 @@
           </form>
         </div>
       </nav>
-      
-    </div>
-
-    <router-view/>
-    
-    <div id="nav">
+      <router-view/>
       <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -78,11 +73,9 @@ export default {
   color: #2c3e50;
   background-color: #F5FAFA;
 }
-
 #nav {
   padding: 30px;
 }
-
 #nav a {
   font-weight: bold;
   color: #2c3e50;
@@ -90,5 +83,4 @@ export default {
 .bg-light{
 background-color: #717477;
 }
-
 </style>

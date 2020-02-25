@@ -106,7 +106,7 @@ export default new Vuex.Store({
             title: body.title || null,
             author: body.authors[0].name || null,
             category: body.subjects[0].name || null,
-            imagePath: body.cover.medium || null
+            imagePath: body.cover ? body.cover.medium : null
           }
 
           context.commit('setBookData', book);
