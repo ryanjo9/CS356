@@ -33,7 +33,7 @@
         <div class="collapse navbar-collapse" id="navbarText">
           <ul class="navbar-nav mr-auto">
           </ul>
-          <button>
+          <button class="bg-white">
             <a href="#app"> <i class="material-icons">arrow_upward</i> </a>
           </button>
         </div>
