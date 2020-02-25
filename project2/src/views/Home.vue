@@ -94,5 +94,8 @@ export default {
 h1{
   font-weight: bold;
 }
-
+.list-group-item{
+  padding: 5px;
+  margin-left: -5px;
+}
 </style>
