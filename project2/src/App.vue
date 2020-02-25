@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-lg">
         <img />
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -13,10 +13,10 @@
               <router-link class="nav-link" to="/">Home</router-link>
             </li>
             <li class="nav-item">
-            <router-link class="nav-link" to="/add">Add</router-link>
+              <router-link style="color:white" class="nav-link" to="/add">Add</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/login">Login </router-link>
+              <router-link style="color:white" class="nav-link" to="/login">Login </router-link>
             </li>
           </ul>
           <form class="form-inline my-2 my-lg-0">
@@ -62,6 +62,9 @@ export default {
 </script>
 
 <style>
+.navbar{
+  background-color: #232F3E;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -80,6 +83,6 @@ export default {
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: white;
 }
 </style>
