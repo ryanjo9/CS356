@@ -76,6 +76,7 @@ export default {
   float: left;
   width: 25%;
   padding: 10px;
+  width: 200px;
 }
 .box2{
   position: static;
@@ -89,9 +90,5 @@ export default {
   flex-flow: row nowrap;
   overflow: auto;
 } 
-.left-indicator,
-.right-indicator {
-    visibility: hidden;
-    width: 25px;
-  }
+
 </style>
