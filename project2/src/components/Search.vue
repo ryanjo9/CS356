@@ -3,10 +3,11 @@
     <h1>Add a book</h1>
     <form @submit.prevent.stop="search" class="pure-form pure-form-aligned">
       <div>
-        <input v-model="isbn" type="text" placeholder="Enter the ISBN to autofill book info (dashes optional)"><br />
+        <input v-model="isbn" type="text" placeholder='Enter the ISBN to autofill book info (dashes optional)'><br />
       </div>
         <br/>
     </form>
+    <p>Or hit next to enter a book manually</p>
     <button type="submit" class="btn btn-outline-warning" @click="search">Next</button> 
     <button type="submit" v-on:click="cancel" class="btn btn-outline-secondary">Cancel</button>
   </div>
@@ -64,6 +65,10 @@ button{
 
 input {
   border-radius: 15px;
-  width: 75%;
+  width: 60%;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #888888;
+  text-align: center;
 }
 </style>
