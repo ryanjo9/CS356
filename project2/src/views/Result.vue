@@ -43,6 +43,12 @@ export default {
 }
 </script>
 <style scoped>
+.list{
+  display: flex;
+  align-items: center;
+  flex-flow: row nowrap;
+  overflow: auto;
+} 
 .picture{
   width:150px;
   padding: 5px;
