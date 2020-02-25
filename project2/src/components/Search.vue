@@ -3,7 +3,7 @@
     <h1>Add a book</h1>
     <form @submit.prevent.stop="search" class="pure-form pure-form-aligned">
       <div>
-        <input v-model="isbn" type="text" placeholder="Enter the ISB to autofill book info"><br />
+        <input v-model="isbn" type="text" placeholder="Enter the ISBN to autofill book info"><br />
       </div>
         <br/>
     </form>
@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     async cancel() {
-      this.isbn = " "
+      this.isbn = ''
     },
     /**
      * Queries for book data usinb isbn and pushes to store
@@ -47,5 +47,23 @@ button{
   text-align: center;
   text-decoration: none;
   display: inline-block;
+}
+
+.search {
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  margin-top: -100px;
+  margin-left: -50px;
+  width: 50%;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 4px;
+  background-color: #ffffff
+}
+
+input {
+  border-radius: 15px;
+  width: 75%;
 }
 </style>

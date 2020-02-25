@@ -1,17 +1,25 @@
 <template>
-  <div class="Form">
+  <div id="bookForm" class="Form">
     <form @submit.prevent="add" class="pure-form pure-form-aligned">
       <div>
-        <label>ISBN</label> <input v-model="isbn" type="text" placeholder="isbn" required/><br/><br/>
-        <label>Title</label> <input v-model="title" type="text" placeholder="Title" required/><br/><br/>
-        <label>Author</label> <input v-model="author" type="text" placeholder="Author" required/><br/><br/>
+        <div style="float:left;">
+        <label>ISBN</label>
+        <input v-model="isbn" type="text" placeholder="isbn" required/><br/><br/>
+        </div>
+        <label>Title</label> 
+        <input v-model="title" type="text" placeholder="Title" required/><br/><br/>
+        <label>Author</label> 
+        <input v-model="author" type="text" placeholder="Author" required/><br/><br/>
         <label>Category</label>
         <select v-model="category">
             <option v-for="(category, position) in categories" v-bind:key="position" style="align:center">{{category}}</option>
         </select><br/>
-        <label :v-show="checkURL">Image URL</label> <input :v-show="checkURL" v-model="imagePath" type="text" placeholder="Image URL" required/><br/><br/>
-        <label>Condition</label> <input v-model="condition" type="text" placeholder="Condition" required/><br/><br/>
-        <label>Price</label> <input v-model="price" type="text" placeholder="Price" required/><br/><br/>
+        <label :v-show="checkURL">Image URL</label> 
+        <input :v-show="checkURL" v-model="imagePath" type="text" placeholder="Image URL" required/><br/><br/>
+        <label>Condition</label> 
+        <input v-model="condition" type="text" placeholder="Condition" required/><br/><br/>
+        <label>Price</label> 
+        <input v-model="price" type="text" placeholder="Price" required/><br/><br/>
       </div>
       <button type="submit" class="btn btn-outline-warning">Submit</button>
       <button type="submit" v-on:click="cancel" class="btn btn-outline-secondary">Cancel</button>
@@ -108,8 +116,22 @@ export default {
     width: 60px;
     margin-left: auto;
     margin-right: 10px;
+    display:block;
   }
   select{
     width: 200px;
+  }
+  input {
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #dddddd;
+    display:block;
+  }
+  #bookForm {
+    position: absolute;
+    background-color: #ffffff;
+    width: 50%;
+    left: 25%;
   }
 </style>
