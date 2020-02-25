@@ -3,7 +3,7 @@
     <h1>Add a book</h1>
     <form @submit.prevent.stop="search" class="pure-form pure-form-aligned">
       <div>
-        <input v-model="isbn" type="text" placeholder="Enter the ISB to autofill book info"><br />
+        <input v-model="isbn" type="text" placeholder="Enter the ISBN to autofill book info (dashes optional)"><br />
       </div>
         <br/>
     </form>

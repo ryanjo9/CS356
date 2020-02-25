@@ -1,8 +1,9 @@
 <template>
   <div class="Form">
+    <p>{{ message }}</p>
     <form @submit.prevent="add" class="pure-form pure-form-aligned">
       <div>
-        <label>ISBN</label> <input v-model="isbn" type="text" placeholder="isbn" required/><br/><br/>
+        <label>ISBN</label> <input v-model="isbn" type="text" placeholder="ISBN (dashes optional)" required/><br/><br/>
         <label>Title</label> <input v-model="title" type="text" placeholder="Title" required/><br/><br/>
         <label>Author</label> <input v-model="author" type="text" placeholder="Author" required/><br/><br/>
         <label>Category</label>
@@ -25,6 +26,7 @@ export default {
   props: ['bookData'],
   data() {
     return {
+      message: 'Here\'s what we found. Please fill in missing data and double check that this information matches the book.',
       isbn: this.bookData.isbn || '',
       title: this.bookData.title || '',
       author: this.bookData.author || '',
