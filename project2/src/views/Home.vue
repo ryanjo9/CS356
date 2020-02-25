@@ -75,7 +75,7 @@ export default {
 .box1{
   float: left;
   width: 25%;
-  padding: 10px;
+  padding: 5px;
   width: 200px;
 }
 .box2{

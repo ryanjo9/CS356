@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <nav class="navbar navbar-expand-lg">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #232F3E">
         <img />
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -10,7 +10,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <router-link class="nav-link" to="/">Home</router-link>
+              <router-link style="color:white" class="nav-link" to="/">Home</router-link>
             </li>
             <li class="nav-item">
               <router-link style="color:white" class="nav-link" to="/add">Add</router-link>
@@ -21,7 +21,7 @@
           </ul>
           <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" minlength="3"  type="search" placeholder="Search" aria-label="Search" v-model="input">
-            <button class="btn btn-outline-success my-2 my-sm-0" @click="search" type="submit">Submit</button>
+            <button class="btn btn-outline-info my-2 my-sm-0" @click="search" type="submit">Submit</button>
           </form>
         </div>
       </nav>
@@ -82,7 +82,4 @@ export default {
   color: #2c3e50;
 }
 
-#nav a.router-link-exact-active {
-  color: white;
-}
 </style>
