@@ -19,9 +19,9 @@
                     <img  class="picture" :src="book.imagePath"/>
                     <section class="box2">
                       <h1 style="font-size:15px">{{ book.title }} </h1>  
-                      <h2 style="font-size:9px"> Author: {{book.author}} </h2> 
-                      <h3 style="font-size:9px"> Condition: {{ book.condition }}</h3>
-                      <h4 style="font-size:9px">Price: {{ book.price }} </h4>
+                      <h2 style="font-size:10px"> Author: {{book.author}} </h2> 
+                      <h2 style="font-size:10px"> Condition: {{ book.condition }}</h2>
+                      <h2 style="font-size:10px">Price: {{ book.price }} </h2>
                     </section>
                 </router-link>
               </list>
@@ -90,5 +90,8 @@ export default {
   flex-flow: row nowrap;
   overflow: auto;
 } 
+h1{
+  font-weight: bold;
+}
 
 </style>
