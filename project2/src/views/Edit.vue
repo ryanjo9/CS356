@@ -36,8 +36,9 @@ export default {
       error: '',
       saved: false,
       message: 'Edit a Book',
-      categories:["Action and adventure","Children's", "Autobiography","Biography","Diary","Health","History","Documentary",
-      "Mystery","Religious","Comic book","Drama","Fairytale","Poetry","Romance","Fiction & Fantasy"]
+      categories:["Action and adventure","Children's","Biography","Diary","Health","History","Documentary",
+      "Mystery","Religious","Comic book","Drama","Fairytale","Poetry","Romance","Fiction & Fantasy","Psychology",
+      "Horror","Technology","Politics","Thriller","Mathematics","Cookbook","Literature Reviews","Art","Science","Memoir"].sort()
     }
   },
   methods: {
