@@ -64,6 +64,7 @@ export default {
 }
 </script>
 <style scoped>
+
 .picture{
   width:150px;
   height: 200px;

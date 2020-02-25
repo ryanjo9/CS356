@@ -26,7 +26,7 @@
         </div>
       </nav>
       <router-view/>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -71,6 +71,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-color: #F5FAFA;
 }
 
 #nav {
@@ -81,5 +82,7 @@ export default {
   font-weight: bold;
   color: #2c3e50;
 }
-
+.bg-light{
+background-color: #717477;
+}
 </style>
