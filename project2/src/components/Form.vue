@@ -1,32 +1,80 @@
 <template>
   <div class="Form">
-    <p>{{ message }}</p>
+    <br/>
+    <h3>Add a Book</h3>
+    <div class="message">
+      <p>{{ message }}</p>
+    </div>
+    <br/>
     <form @submit.prevent="add" class="pure-form pure-form-aligned">
       <div>
-        <label>ISBN</label> <input v-model="isbn" type="text" placeholder="ISBN (dashes optional)" required/><br/><br/>
-        <label>Title</label> <input v-model="title" type="text" placeholder="Title" required/><br/><br/>
-        <label>Author</label> <input v-model="author" type="text" placeholder="Author" required/><br/><br/>
-        <label>Category</label>
-        <select v-model="category">
-            <option v-for="(category, position) in categories" v-bind:key="position" style="align:center">{{category}}</option>
-        </select><br/>
-        <label :v-show="checkURL">Image URL</label> <input :v-show="checkURL" v-model="imagePath" type="text" placeholder="Image URL" required/><br/><br/>
-        <label>Condition</label> <input v-model="condition" type="text" placeholder="Condition" required/><br/><br/>
-        <label>Price</label> <input v-model="price" type="text" placeholder="Price" required/><br/><br/>
+        <div class="group">
+          <input type="text" v-model="isbn" required>
+          <span class="highlight"/>
+          <span class="bar"/>
+          <label>ISBN (dashes optional)</label>
+        </div>
+
+        <div class="group">
+          <input type="text" v-model="title" required>
+          <span class="highlight"/>
+          <span class="bar"/>
+          <label>Title</label>
+        </div>
+
+        <div class="group">
+          <input type="text" v-model="author" required>
+          <span class="highlight"/>
+          <span class="bar"/>
+          <label>Author</label>
+        </div>
+
+        <div class="group">
+          <v-select class="select-style" placeholder="Category" v-model="category" :options="categories"/>
+        </div>
+
+        <div class="group">
+          <input type="text" v-model="imagePath" required>
+          <span class="highlight"/>
+          <span class="bar"/>
+          <label>Image URL</label>
+        </div>
+
+        <div class="group">
+          <input type="text" v-model="condition" required>
+          <span class="highlight"/>
+          <span class="bar"/>
+          <label>Condition</label>
+        </div>
+
+        <div class="group">
+          <input type="text" v-model="price" required>
+          <span class="highlight"/>
+          <span class="bar"/>
+          <label>Price</label>
+        </div>
+
       </div>
       <button type="submit" class="btn btn-outline-warning">Submit</button>
       <button type="submit" v-on:click="cancel" class="btn btn-outline-secondary">Cancel</button>
     </form>
+    
+    <br/>
   </div>
 </template>
 
 <script>
+import vSelect from 'vue-select';
+import 'vue-select/dist/vue-select.css';
 export default {
   name: 'Form',
   props: ['bookData'],
+  components: {
+    vSelect
+  },
   data() {
     return {
-      message: 'Here\'s what we found. Please fill in missing data and double check that this information matches the book.',
+      message: 'Here\'s what we found. Fill in missing data and double check that this information matches the book.',
       isbn: this.bookData.isbn || '',
       title: this.bookData.title || '',
       author: this.bookData.author || '',
@@ -100,18 +148,126 @@ export default {
 </script>
 
 <style scoped>
+  .select-style .vs_search::placeholder,
+  .select-style .vs_dropdown-menu,
+  .select-style {
+    width: 80%;
+  }
+  .message {
+    width: 90%;
+    padding-left: 10%;
+    text-align: center
+  }
   button{
     width: 100px;
     text-align: center;
     text-decoration: none;
     margin-right: 10px;
   }
-  label{
-    width: 60px;
-    margin-left: auto;
-    margin-right: 10px;
+
+  .Form {
+    position: relative;
+    top: 50%;
+    left: 30%;
+    background-color: #ffffff;
+    width: 40%;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 4px;
+    border-color: #888888
   }
-  select{
-    width: 200px;
+  /* form starting stylings ------------------------------- */
+  .group            { 
+    position:relative; 
+    margin-bottom:45px; 
+    left: 10%;
+  }
+  input               {
+    font-size:18px;
+    padding:10px 10px 10px 5px;
+    display:block;
+    width:80%;
+    border:none;
+    border-bottom:1px solid #757575;
+    background-color: #ffffff;
+  }
+  input:focus         { outline:none; }
+
+  /* LABEL ======================================= */
+  label                {
+    color:#999; 
+    font-size:18px;
+    font-weight:normal;
+    position:absolute;
+    pointer-events:none;
+    left:5px;
+    top:10px;
+    transition:0.2s ease all; 
+    -moz-transition:0.2s ease all; 
+    -webkit-transition:0.2s ease all;
+  }
+
+  /* active state */
+  input:focus ~ label, input:valid ~ label        {
+    top:-20px;
+    font-size:14px;
+    color:#5264AE;
+  }
+
+  /* BOTTOM BARS ================================= */
+  .bar    { position:relative; display:block; width:80%; }
+  .bar:before, .bar:after     {
+    content:'';
+    height:2px; 
+    width:0;
+    bottom:1px; 
+    position:absolute;
+    background:#5264AE; 
+    transition:0.2s ease all; 
+    -moz-transition:0.2s ease all; 
+    -webkit-transition:0.2s ease all;
+  }
+  .bar:before {
+    left:50%;
+  }
+  .bar:after {
+    right:50%; 
+  }
+
+  /* active state */
+  input:focus ~ .bar:before, input:focus ~ .bar:after {
+    width:50%;
+  }
+
+  /* HIGHLIGHTER ================================== */
+  .highlight {
+    position:absolute;
+    height:60%; 
+    width:100px; 
+    top:25%; 
+    left:0;
+    pointer-events:none;
+    opacity:0.5;
+  }
+
+  /* active state */
+  input:focus ~ .highlight {
+    -webkit-animation:inputHighlighter 0.3s ease;
+    -moz-animation:inputHighlighter 0.3s ease;
+    animation:inputHighlighter 0.3s ease;
+  }
+
+  /* ANIMATIONS ================ */
+  @-webkit-keyframes inputHighlighter {
+      from { background:#5264AE; }
+    to    { width:0; background:transparent; }
+  }
+  @-moz-keyframes inputHighlighter {
+      from { background:#5264AE; }
+    to    { width:0; background:transparent; }
+  }
+  @keyframes inputHighlighter {
+      from { background:#5264AE; }
+    to    { width:0; background:transparent; }
   }
 </style>

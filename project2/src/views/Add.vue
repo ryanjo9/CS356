@@ -1,26 +1,35 @@
 <template>
-  <div >
+  <div class="Add">
     <div v-if="searchDone">
       <Search v-on:searchDone="switchView"/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
     </div>
     <div v-else>
+      <br/>
       <Form v-on:cancel="switchView" :bookData.sync="bookData"/>
+      <br/>
+      <br/>
     </div>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
   </div>
 </template>
 
@@ -49,6 +58,10 @@ export default {
 </script>
 
 <style scoped>
+.add {
+  height: 100%;
+  padding-bottom: 500px;
+}
 body {
   /* The image used */
   background-color: black;
