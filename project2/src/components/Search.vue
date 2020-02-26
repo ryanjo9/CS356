@@ -1,7 +1,7 @@
 <template>
   <div class="search">
     <h1>Add a book</h1>
-    <p>Enter the ISBN of the book to search the internet for the book information.</p>
+    <p>Enter the book's ISBN to search the internet for its information.</p>
     <br/>
     <form @submit.prevent.stop="search" class="pure-form pure-form-aligned">
       <div class="group">

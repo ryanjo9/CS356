@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div class="Add">
     <div v-if="searchDone">
       <Search v-on:searchDone="switchView"/>
       <br/>
@@ -58,6 +58,10 @@ export default {
 </script>
 
 <style scoped>
+.add {
+  height: 100%;
+  padding-bottom: 500px;
+}
 body {
   /* The image used */
   background-color: black;

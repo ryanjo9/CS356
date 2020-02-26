@@ -30,6 +30,10 @@
         </div>
 
         <div class="group">
+          <v-select class="select-style" placeholder="Category" v-model="category" :options="categories"/>
+        </div>
+
+        <div class="group">
           <input type="text" v-model="imagePath" required>
           <span class="highlight"/>
           <span class="bar"/>
@@ -50,12 +54,6 @@
           <label>Price</label>
         </div>
 
-        <div class="group">
-          <select v-model="category">
-            <option v-for="(category, position) in categories" v-bind:key="position" style="align:center">{{category}}</option>
-          </select>
-          <label>Category</label>
-        </div>  
       </div>
       <button type="submit" class="btn btn-outline-warning">Submit</button>
       <button type="submit" v-on:click="cancel" class="btn btn-outline-secondary">Cancel</button>
@@ -66,12 +64,17 @@
 </template>
 
 <script>
+import vSelect from 'vue-select';
+import 'vue-select/dist/vue-select.css';
 export default {
   name: 'Form',
   props: ['bookData'],
+  components: {
+    vSelect
+  },
   data() {
     return {
-      message: 'Here\'s what we found. Please fill in missing data and double check that this information matches the book.',
+      message: 'Here\'s what we found. Fill in missing data and double check that this information matches the book.',
       isbn: this.bookData.isbn || '',
       title: this.bookData.title || '',
       author: this.bookData.author || '',
@@ -145,6 +148,11 @@ export default {
 </script>
 
 <style scoped>
+  .select-style .vs_search::placeholder,
+  .select-style .vs_dropdown-menu,
+  .select-style {
+    width: 80%;
+  }
   .message {
     width: 90%;
     padding-left: 10%;
