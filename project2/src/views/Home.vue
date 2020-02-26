@@ -31,6 +31,7 @@
         <br>
       </section>
     </ul>
+    
   </div>
 </template>
 
