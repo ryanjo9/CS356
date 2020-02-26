@@ -25,6 +25,7 @@
       <br/>
     </div>
     <div v-else>
+      <br/>
       <Form v-on:cancel="switchView" :bookData.sync="bookData"/>
       <br/>
       <br/>

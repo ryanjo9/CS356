@@ -1,6 +1,11 @@
 <template>
   <div class="Form">
-    <p>{{ message }}</p>
+    <br/>
+    <h3>Add a Book</h3>
+    <div class="message">
+      <p>{{ message }}</p>
+    </div>
+    <br/>
     <form @submit.prevent="add" class="pure-form pure-form-aligned">
       <div>
         <div class="group">
@@ -55,6 +60,8 @@
       <button type="submit" class="btn btn-outline-warning">Submit</button>
       <button type="submit" v-on:click="cancel" class="btn btn-outline-secondary">Cancel</button>
     </form>
+    
+    <br/>
   </div>
 </template>
 
@@ -138,6 +145,11 @@ export default {
 </script>
 
 <style scoped>
+  .message {
+    width: 90%;
+    padding-left: 10%;
+    text-align: center
+  }
   button{
     width: 100px;
     text-align: center;
@@ -145,25 +157,31 @@ export default {
     margin-right: 10px;
   }
 
-  #bookForm {
-    position: absolute;
+  .Form {
+    position: relative;
+    top: 50%;
+    left: 30%;
     background-color: #ffffff;
-    width: 50%;
-    left: 25%;
+    width: 40%;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 4px;
+    border-color: #888888
   }
   /* form starting stylings ------------------------------- */
   .group            { 
     position:relative; 
     margin-bottom:45px; 
-    left: 35%;
+    left: 10%;
   }
   input               {
     font-size:18px;
     padding:10px 10px 10px 5px;
     display:block;
-    width:300px;
+    width:80%;
     border:none;
     border-bottom:1px solid #757575;
+    background-color: #ffffff;
   }
   input:focus         { outline:none; }
 
@@ -189,7 +207,7 @@ export default {
   }
 
   /* BOTTOM BARS ================================= */
-  .bar    { position:relative; display:block; width:300px; }
+  .bar    { position:relative; display:block; width:80%; }
   .bar:before, .bar:after     {
     content:'';
     height:2px; 
