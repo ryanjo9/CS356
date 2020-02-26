@@ -14,7 +14,7 @@
         <div>
           <ul id="example-2">
             <span class="list">
-              <list v-for="(book, position) in categories[category]" v-bind:key="position">
+              <span v-for="(book, position) in categories[category]" v-bind:key="position">
                 <router-link :to="{ name: 'edit', params: {id: book._id, book} }">
                     <img  class="picture" :src="book.imagePath"/>
                     <section class="box2">
@@ -24,14 +24,14 @@
                       <h2 style="font-size:10px">Price: {{ book.price }} </h2>
                     </section>
                 </router-link>
-              </list>
+              </span>
             </span>
           </ul>
         </div>
         <br>
       </section>
     </ul>
-    
+
   </div>
 </template>
 
