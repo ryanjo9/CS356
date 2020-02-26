@@ -103,9 +103,9 @@ export default new Vuex.Store({
         if (body) {
           const book = {
             isbn,
-            title: body.title || null,
-            author: body.authors[0].name || null,
-            category: body.subjects[0].name || null,
+            title: body.title ? body.title : null,
+            author: body.authors ? body.authors[0].name : null,
+            category: body.subjects ? body.subjects[0].name : null,
             imagePath: body.cover ? body.cover.medium : null
           }
 
