@@ -2,25 +2,33 @@
   <div >
     <div v-if="searchDone">
       <Search v-on:searchDone="switchView"/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
     </div>
     <div v-else>
       <Form v-on:cancel="switchView" :bookData.sync="bookData"/>
+      <br/>
+      <br/>
     </div>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
   </div>
 </template>
 
