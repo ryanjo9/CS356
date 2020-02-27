@@ -36,7 +36,7 @@ export default {
       error: '',
       saved: false,
       message: 'Edit a Book',
-      categories:["Action and adventure","Children's","History","Religious","Poetry","Romance","Fiction & Fantasy","Psychology",
+      categories:["Adventure and Fantasy","Children's","History","Religious","Poetry","Romance","Psychology",
       "Horror","Technology","Politics","Cookbook","Art","Science","Memoir"].sort()
     }
   },

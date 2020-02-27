@@ -44,7 +44,7 @@ export default {
   data() {
     return {
       username: this.$store.state.username,
-      data:["Action and adventure","Children's","History","Religious","Poetry","Romance","Fiction & Fantasy","Psychology",
+      data:["Adventure and Fantasy","Children's","History","Religious","Poetry","Romance","Psychology",
       "Horror","Technology","Politics","Cookbook","Art","Science","Memoir"].sort()
     }
   },
