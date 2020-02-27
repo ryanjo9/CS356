@@ -21,7 +21,7 @@
                       <h1 style="font-size:15px">{{ book.title }} </h1>  
                       <h2 style="font-size:10px"> Author: {{book.author}} </h2> 
                       <h2 style="font-size:10px"> Condition: {{ book.condition }}</h2>
-                      <h2 style="font-size:10px">Price: {{ book.price }} </h2>
+                      <h2 style="font-size:10px">Price: ${{ book.price }} </h2>
                     </section>
                 </router-link>
               </span>
@@ -44,9 +44,8 @@ export default {
   data() {
     return {
       username: this.$store.state.username,
-      data:["Action and adventure","Children's","Biography","Diary","Health","History","Documentary",
-      "Mystery","Religious","Comic book","Drama","Fairytale","Poetry","Romance","Fiction & Fantasy","Psychology",
-      "Horror","Technology","Politics","Thriller","Mathematics","Cookbook","Literature Reviews","Art","Science","Memoir"].sort()
+      data:["Action and adventure","Children's","History","Religious","Poetry","Romance","Fiction & Fantasy","Psychology",
+      "Horror","Technology","Politics","Cookbook","Art","Science","Memoir"].sort()
     }
   },
   computed: {
