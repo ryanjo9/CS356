@@ -22,7 +22,7 @@
           <div class="col" />
           <div class="col-8">
             <mdb-btn color="primary" type="submit" class="register">Submit</mdb-btn>
-            <mdb-btn color="success" type="submit" style="height:40px;">Register</mdb-btn>
+            <router-link to="/register"><mdb-btn color="success" type="submit" style="height:40px;">Register</mdb-btn></router-link>
           </div>
          </div>      
       </div>
