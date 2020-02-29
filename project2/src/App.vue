@@ -2,13 +2,14 @@
   <div id="app">
     <div id="nav">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #232F3E">
-        <img />
+  
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
+            <img src="https://clipartart.com/images/bookstore-logo-clipart-4.png" alt="logo" style="width:50px">
             <li class="nav-item active">
               <router-link style="color:white" class="nav-link" to="/">Home</router-link>
             </li>
