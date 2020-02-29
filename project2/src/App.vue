@@ -9,7 +9,7 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <img src="https://clipartart.com/images/bookstore-logo-clipart-4.png" alt="logo" style="width:50px">
+            <img src="./assets/hiclipart.com.png" alt="logo" style="width:50px;">
             <li class="nav-item active">
               <router-link style="color:white" class="nav-link" to="/">Home</router-link>
             </li>
