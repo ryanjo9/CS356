@@ -1,11 +1,11 @@
 <template>
     <div class="container">
+      <br />   <br />
         <div  class="row">
           <div class="col" />
           <div class="col-6">
-          <h1>Login to your account</h1>
           <form @submit.prevent="login" class="pure-form pure-form-aligned">
-              <p class="pure-form-message-inline">All fields are required.</p>
+              <p class="h4 text-center mb-4">Login to your Account</p>
               <mdbIcon icon="user" size="lg" class="icon"/>
               <mdb-input required class="input" type="text" v-model="username" placeholder="Username"/><br />
               <mdbIcon icon="lock" size="lg" class="icon"/>
@@ -14,11 +14,13 @@
                 <mdb-btn color="primary" type="submit" class="register">Submit</mdb-btn>
                 <router-link to="/register"><mdb-btn color="success" type="submit" style="height:40px;">Register</mdb-btn></router-link>
               </div>
+              <p class="pure-form-message-inline" style="color:red"> * All fields are required.</p>
           </form>
           <p v-if="error" class="error">{{error}}</p>
           </div>
         <div class="col" />
       </div>
+      <br />   <br />
     </div>
 </template>
 
