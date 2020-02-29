@@ -2,7 +2,6 @@
 <div>
   <h1>Login to your account</h1>
   <form @submit.prevent="login" class="pure-form pure-form-aligned">
-    <fieldset>
       <p class="pure-form-message-inline">All fields are required.</p>
 
       <div class="container">
@@ -23,26 +22,12 @@
           <div class="col" />
           <div class="col-8">
             <mdb-btn color="primary" type="submit" class="register">Submit</mdb-btn>
-            <mdb-btn color="success" type="submit">Register</mdb-btn>
+            <mdb-btn color="success" type="submit" style="height:40px;">Register</mdb-btn>
           </div>
          </div>      
       </div>
-    </fieldset>
   </form>
   <p v-if="error" class="error">{{error}}</p>
-  <br />
-  <br />
-
-  <br />
-  <br />
-
-  <br />
-  <br />
-
-  <br />
-  <br />
-  <br />
-  
 </div>
 </template>
 
@@ -87,6 +72,7 @@ export default {
   margin-top: -30px;
 }
 .register{
+  height:40px;
   margin-right: 10px;
 }
 form {
