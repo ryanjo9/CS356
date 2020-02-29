@@ -5,18 +5,27 @@
     <fieldset>
       <p class="pure-form-message-inline">All fields are required.</p>
 
-      <div class="pure-control-group">
-        <label for="username">Username</label>
-        <input v-model="username" type="text" placeholder="Username">
+      <div class="container">
+         <div class="row">
+          <div class="col" />
+          <div class="col-6">
+            <mdbIcon icon="user" size="lg" class="register"/>
+            <mdb-input  type="text" v-model="username" placeholder="Username"/><br />
+            <mdbIcon icon="lock" size="lg" class="register"/>
+            <mdb-input  type="password" v-model="password" placeholder="Password"/>
+          </div>
+          <div class="col" />
+         </div>      
       </div>
-
-      <div class="pure-control-group">
-        <label for="password">Password</label>
-        <input v-model="password" type="password" placeholder="Password">
-      </div>
-
-      <div class="pure-controls">
-        <button type="submit" class="pure-button pure-button-primary">Submit</button>
+    <br />
+      <div class="container">
+         <div class="row">
+          <div class="col" />
+          <div class="col-8">
+            <mdb-btn color="primary" type="submit" class="register">Submit</mdb-btn>
+            <mdb-btn color="success" type="submit">Register</mdb-btn>
+          </div>
+         </div>      
       </div>
     </fieldset>
   </form>
@@ -38,8 +47,14 @@
 </template>
 
 <script>
+import { mdbInput, mdbBtn, mdbIcon} from 'mdbvue';
 export default {
   name: 'login',
+  components: {
+      mdbInput,
+      mdbBtn,
+      mdbIcon
+    },
   data() {
     return {
       username: '',
@@ -65,6 +80,9 @@ export default {
 </script>
 
 <style scoped>
+.register{
+  margin-right: 10px;
+}
 form {
   border: 1px solid #ccc;
   background-color: #eee;

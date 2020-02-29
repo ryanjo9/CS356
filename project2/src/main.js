@@ -4,8 +4,10 @@ import router from './router'
 import store from './store'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
-
-
+import * as mdbvue from 'mdbvue'
+for (const component in mdbvue) {
+  Vue.component(component, mdbvue[component])
+}
 Vue.config.productionTip = false
 
 new Vue({
