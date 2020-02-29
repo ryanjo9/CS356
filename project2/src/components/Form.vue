@@ -3,52 +3,52 @@
     <br/>
     <h3>Add a Book</h3>
     <div class="message">
-      <p>{{ message }}</p>
+      <p>Here's what we found. Fill in missing data and double check that this information matches the book.</p>
     </div>
     <br/>
     <form @submit.prevent="add" class="pure-form pure-form-aligned">
       <div>
         <div class="group">
-          <input type="text" v-model="isbn" required>
+          <input type="text" v-model="isbn" @input="editing" required>
           <span class="highlight"/>
           <span class="bar"/>
           <label>ISBN (dashes optional)</label>
         </div>
 
         <div class="group">
-          <input type="text" v-model="title" required>
+          <input type="text" v-model="title" @input="editing" required>
           <span class="highlight"/>
           <span class="bar"/>
           <label>Title</label>
         </div>
 
         <div class="group">
-          <input type="text" v-model="author" required>
+          <input type="text" v-model="author" @input="editing" required>
           <span class="highlight"/>
           <span class="bar"/>
           <label>Author</label>
         </div>
 
         <div class="group">
-          <v-select class="select-style" placeholder="Category" v-model="category" :options="categories" :required="!category"/>
+          <v-select @input="editing" class="select-style" placeholder="Category" v-model="category" :options="categories" :required="!category"/>
         </div>
 
         <div class="group">
-          <input type="text" v-model="imagePath" required>
+          <input type="text" v-model="imagePath" @input="editing" required>
           <span class="highlight"/>
           <span class="bar"/>
           <label>Image URL</label>
         </div>
 
         <div class="group">
-          <input type="text" v-model="condition" required>
+          <input type="text" v-model="condition" @input="editing" required>
           <span class="highlight"/>
           <span class="bar"/>
           <label>Condition</label>
         </div>
 
         <div class="group">
-          <input type="text" v-model="price" required>
+          <input type="text" v-model="price" @input="editing" required>
           <span class="highlight"/>
           <span class="bar"/>
           <label>Price</label>
@@ -57,6 +57,7 @@
       </div>
       <button type="submit" class="btn btn-outline-warning">Submit</button>
       <button type="submit" v-on:click="cancel" class="btn btn-outline-secondary">Cancel</button>
+      <p>{{ message }}</p>
     </form>
     
     <br/>
@@ -74,7 +75,7 @@ export default {
   },
   data() {
     return {
-      message: 'Here\'s what we found. Fill in missing data and double check that this information matches the book.',
+      message: '',
       isbn: this.bookData.isbn || '',
       title: this.bookData.title || '',
       author: this.bookData.author || '',
@@ -96,28 +97,13 @@ export default {
       else return false;
     },
     async add() {
-      if (
-        !this.isbn ||
-        !this.title ||
-        !this.author || 
-        !this.category ||
-        !this.condition || 
-        !this.price || 
-        !this.imagePath
-      ) {
-        // Incomplete data, don't save
-        return;
-      }
-
+      let missing = [];
       const price = this.price.replace('$', '');
 
       if (isNaN(price)) {
         // error
-        return;
-      }
-
-      
-
+        missing.push('price');
+      }   
       const book = {
         isbn: this.isbn,
         title: this.title,
@@ -128,9 +114,19 @@ export default {
         price: Number(price)
       }
 
-      if (this.bookData.imagePath) {
-        book.imagePath = this.bookData.imagePath;
-      }
+      Object.keys(book).forEach((key) => {
+        const item = book[key];
+        if (item === null || item === undefined || item === '') {
+          missing.push(key);
+        }
+      })
+
+      if (missing.length > 0 ) {
+        // Incomplete data, don't save
+        this.message = `Missing or invalid data for: ${missing}`
+        return;
+      }   
+
 
       try {
         this.error = await this.$store.dispatch('addBook', book)
