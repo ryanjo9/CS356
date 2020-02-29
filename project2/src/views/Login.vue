@@ -9,10 +9,10 @@
          <div class="row">
           <div class="col" />
           <div class="col-6">
-            <mdbIcon icon="user" size="lg" class="register"/>
-            <mdb-input  type="text" v-model="username" placeholder="Username"/><br />
-            <mdbIcon icon="lock" size="lg" class="register"/>
-            <mdb-input  type="password" v-model="password" placeholder="Password"/>
+            <mdbIcon icon="user" size="lg" class="icon"/>
+            <mdb-input required class="input" type="text" v-model="username" placeholder="Username"/><br />
+            <mdbIcon icon="lock" size="lg" class="icon"/>
+            <mdb-input required class="input" type="password" v-model="password" placeholder="Password"/>
           </div>
           <div class="col" />
          </div>      
@@ -80,6 +80,12 @@ export default {
 </script>
 
 <style scoped>
+.icon{
+  margin-right: -80%;
+}
+.input{
+  margin-top: -30px;
+}
 .register{
   margin-right: 10px;
 }
