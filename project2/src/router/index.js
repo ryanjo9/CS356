@@ -5,6 +5,7 @@ import Login from '../views/Login.vue'
 import Add from '../views/Add.vue'
 import Result from '../views/Result.vue'
 import Edit from '../views/Edit.vue'
+import Register from '../views/Register.vue'
 
 Vue.use(VueRouter)
 
@@ -38,6 +39,11 @@ const routes = [
     name: 'edit',
     component: Edit,
     props: true
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: Register
   }
 ]
 
