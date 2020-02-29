@@ -8,14 +8,14 @@
         <form>
             <p class="h4 text-center mb-4">Sign up</p>
             <div class="grey-text">
-            <mdbIcon icon="user" size="lg" class="icon"/>
-            <mdb-input required class="input" placeholder="Your name" type="text"/> <br/>
-            <mdbIcon icon="envelope" size="lg" class="icon"/>
-            <mdb-input required class="input" placeholder="Your email" type="email"/> <br/>
-            <mdbIcon icon="lock" size="lg" class="icon"/>
-            <mdb-input required class="input" placeholder="Your password" type="password"/> <br/>
-            <mdbIcon icon="exclamation-triangle" size="lg" class="icon"/>
-            <mdb-input required class="input" placeholder="Confirm your password" type="text"/> <br/>
+                <mdbIcon icon="user" size="lg" class="icon"/>
+                <mdb-input required class="input" placeholder="Your name" type="text"/> <br/>
+                <mdbIcon icon="envelope" size="lg" class="icon"/>
+                <mdb-input required class="input" placeholder="Your email" type="email"/> <br/>
+                <mdbIcon icon="lock" size="lg" class="icon"/>
+                <mdb-input required class="input" placeholder="Your password" type="password"/> <br/>
+                <mdbIcon icon="exclamation-triangle" size="lg" class="icon"/>
+                <mdb-input required class="input" placeholder="Confirm your password" type="text"/> <br/>
             </div>
             <div class="text-center">
             <mdb-btn color="primary">Register</mdb-btn>
