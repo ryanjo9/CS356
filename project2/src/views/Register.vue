@@ -18,7 +18,7 @@
                 <mdb-input required class="input" v-model="recheck" placeholder="Confirm your password" type="text"/> <br/>
             </div>
             <div class="text-center">
-            <mdb-btn color="primary" v-if="check">Register</mdb-btn>
+                <mdb-btn color="success" style="height:40px;" v-if="check">Register</mdb-btn>
             </div>
         </form>
         </div>
@@ -49,7 +49,7 @@ export default {
   },
   computed:{
       check(){
-         return this.password === this.recheck ? true : false
+         return (this.password === this.recheck) ? true : false
       }
   },
   methods: {
