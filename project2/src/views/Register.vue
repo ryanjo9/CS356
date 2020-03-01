@@ -9,7 +9,7 @@
             <p class="h4 text-center mb-4">Sign up</p>
             <div class="grey-text">
                 <mdbIcon icon="user" size="lg" class="icon"/>
-                <mdb-input required class="input" v-model="username" laceholder="Your name" type="text"/> <br/>
+                <mdb-input required class="input" v-model="username" placeholder="Your name" type="text"/> <br/>
                 <mdbIcon icon="envelope" size="lg" class="icon"/>
                 <mdb-input required class="input" v-model="email" placeholder="Your email" type="email"/> <br/>
                 <mdbIcon icon="lock" size="lg" class="icon"/>
