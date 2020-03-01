@@ -21,6 +21,8 @@
         <div class="col" />
       </div>
       <br />   <br />
+      <br />   <br />
+      <br />   <br />
     </div>
 </template>
 
