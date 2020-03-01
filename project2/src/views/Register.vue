@@ -18,8 +18,9 @@
                 <mdb-input required class="input" v-model="recheck" placeholder="Confirm your password" type="text"/> <br/>
             </div>
             <div class="text-center">
-                <mdb-btn color="success" style="height:40px;" v-if="check">Register</mdb-btn>
+              <mdb-btn color="success" type="submit" style="height:40px;">Register</mdb-btn>
             </div>
+            <p>{{ message }}</p>
         </form>
         </div>
          <div class="col" />
@@ -45,15 +46,17 @@ export default {
       email: '',
       recheck:'',
       error: '',
+      message: '',
     }
-  },
-  computed:{
-      check(){
-         return (this.password === this.recheck) ? true : false
-      }
   },
   methods: {
     async login() {
+      if (this.password !== this.recheck) {
+        this.message = 'Passwords do not match.';
+        return;
+      }
+
+      console.log('logging in')
       try {
         this.error = await this.$store.dispatch("login", {
           username: this.username,
