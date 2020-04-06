@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Birthday Text Automation</string>
+    <string name="time_prefix">Messages will be sent at:</string>
+    <string name="default_time">09:00</string>
+    <string name="running">Status: Running</string>
+    <string name="disabled">Status: Disabled</string>
+    <string name="disable_action">Disable all automatic messages</string>
+    <string name="enable_action">Start automatic messages</string>
+    <string name="upcoming_birthdays">Upcoming Birthdays</string>
+</resources>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <!--Main content-->
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:orientation="vertical"
+            android:id="@+id/main_content"
+            android:gravity="center">
+
+        <!-- Input Time-->
+        <include layout="@layout/time_input"/>
+
+        <!-- OnOff Switch -->
+        <include layout="@layout/on_off"/>
+
+        <!-- Upcoming Birthdays -->
+        <include layout="@layout/upcoming_birthdays"/>
+    </LinearLayout>
+
+    <!-- Bottom Nav Bar -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/colorPrimary"
+            app:itemIconTint="@drawable/bottom_navigation_selector"
+            app:itemTextColor="@drawable/bottom_navigation_selector"
+            app:menu="@menu/bottom_navigation_menu" />
+</FrameLayout>
