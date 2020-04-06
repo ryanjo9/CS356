@@ -33,6 +33,9 @@
         </div>
       </nav>
       <router-view/>
+      <br />
+      <p class="copyright text-muted" style="margin-left:auto; margin-right:auto; text-align:center;">Copyright © 2020 Camy Ngo &amp; Ryan O'Laughing</p>
+      <br />
       <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
