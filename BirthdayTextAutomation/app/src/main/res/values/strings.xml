@@ -7,4 +7,7 @@
     <string name="disable_action">Disable all automatic messages</string>
     <string name="enable_action">Start automatic messages</string>
     <string name="upcoming_birthdays">Upcoming Birthdays</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

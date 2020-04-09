@@ -7,11 +7,16 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 object Data {
-  lateinit var allContacts: ArrayList<Contact>
+  var allContacts = ArrayList<Contact>()
   var upcomingBirthdays = ArrayList<Contact>()
 
   fun loadContacts(cr: ContentResolver) {
     // query contact contract
+
+    if (allContacts.size != 0) {
+      return
+    }
+
     allContacts = Contacts.getAllContacts(cr)
 
     allContacts = ArrayList(allContacts.sortedWith(compareBy{ it.birthday }))
