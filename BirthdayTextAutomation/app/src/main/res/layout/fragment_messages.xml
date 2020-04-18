@@ -3,8 +3,7 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             android:id="@+id/time_fragment"
-             tools:context=".TimeFragment">
+             tools:context=".MessagesFragment">
 
     <LinearLayout
             android:layout_width="match_parent"
@@ -15,13 +14,8 @@
             android:id="@+id/main_content"
             android:gravity="center">
 
-        <!-- Input Time-->
-        <include layout="@layout/time_input"/>
+            <include layout="@layout/default_message"/>
 
-        <include layout="@layout/default_message"/>
-
-        <!-- Upcoming Birthdays -->
-        <include layout="@layout/upcoming_birthdays"/>
     </LinearLayout>
 
 </FrameLayout>

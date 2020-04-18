@@ -1,6 +1,7 @@
 package com.ryanjolaughlin.birthdaytextautomation
 
 import android.app.TimePickerDialog
+import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
@@ -12,7 +13,13 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Switch
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.get
+import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
+import org.w3c.dom.Text
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -26,14 +33,33 @@ import java.util.*
  *
  */
 class TimeFragment : Fragment() {
-  private var enabled = true
+  private lateinit var timePrefixView: TextView
+  private lateinit var upcomingList : LinearLayout
+  private var includeFirstName : Boolean = false
+
+  override fun onResume() {
+    super.onResume()
+
+    // Saving numEnabled since updating the upcoming birthdays will activate the onCheckedChangedListener
+    // Which will double count additions or subtractions
+    val savedNumEnabled = Data.numEnabled
+    Data.upcomingBirthdays.forEachIndexed { index, s ->
+      val switch : Switch = upcomingList[index].findViewById(R.id.contact_switch)
+
+      switch.isChecked = Data.contactsMap[s]!!.enabled
+    }
+    Data.numEnabled = savedNumEnabled
+    updateCount(Data.numEnabled)
+  }
 
   override fun onCreateView(
     inflater: LayoutInflater, container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View? {
     // Inflate the layout for this fragment
-    val fragmentView: View = inflater.inflate(R.layout.fragment_time, container, false)
+    val fragmentView = inflater.inflate(R.layout.fragment_time, container, false)
+
+    timePrefixView = fragmentView.findViewById(R.id.time_prefix)
 
     //#region input time
     val inputTextView: TextView = fragmentView.findViewById(R.id.time_input)
@@ -45,49 +71,67 @@ class TimeFragment : Fragment() {
         cal.set(Calendar.MINUTE, minute)
         setTime(cal, fragmentView)
       }
-      TimePickerDialog(getContext(), timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
+      TimePickerDialog(context, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
     }
     //#endregion
 
-    //#region on off
-    val onOffTextView: TextView = fragmentView.findViewById(R.id.on_off)
-
-    onOffTextView.setOnClickListener {
-      val statusTextView: TextView = fragmentView.findViewById(R.id.status)
-
-      statusTextView.text = if (this.enabled) getString(R.string.disabled) else getString(R.string.running)
-      onOffTextView.setTextColor(if (this.enabled)  ResourcesCompat.getColor(resources, R.color.green, null) else ResourcesCompat.getColor(resources, R.color.red, null))
-      onOffTextView.text = if (this.enabled) getString(R.string.enable_action) else getString(R.string.disable_action)
-
-      this.enabled = !this.enabled
+    //#region default message
+    val defaultMessageTextView = fragmentView.findViewById<TextView>(R.id.default_message_content)
+    defaultMessageTextView.setOnClickListener {
+      if (includeFirstName) {
+        includeFirstName = false
+        defaultMessageTextView.text = getString(R.string.default_message_no_comma)
+      } else {
+        includeFirstName = true
+        if (Data.upcomingBirthdays.size > 0) {
+          defaultMessageTextView.text =
+            resources.getString(R.string.default_message_comma, Data.contactsMap[Data.upcomingBirthdays[0]]!!.firstName)
+        } else {
+          defaultMessageTextView.text = resources.getString(R.string.default_message_comma, "Ada")
+        }
+      }
     }
-    //#endregion
 
     //#region upcoming birthdays
-
-    Data.upcomingBirthdays.forEachIndexed { index, contact ->
+    Data.upcomingBirthdays.forEachIndexed { index, id ->
       // Image
+      val contact = Data.contactsMap[id]
       val v : View = View.inflate(context, R.layout.contact, null)
       val upcomingPhoto : ImageView = v.findViewById(R.id.contact_photo)
-      upcomingPhoto.setImageURI(Uri.parse(contact.photoUri))
+      upcomingPhoto.setImageURI(Uri.parse(contact!!.photoUri))
 
-      if(upcomingPhoto.drawable == null) upcomingPhoto.setImageResource(R.drawable.ic_tag_faces_black_24dp);
+      if(upcomingPhoto.drawable == null) upcomingPhoto.setImageResource(R.drawable.ic_tag_faces_black_24dp)
 
-      val nameView : TextView = v.findViewById(R.id.upcoming_name)
+      val nameView : TextView = v.findViewById(R.id.contact_name)
       nameView.text = contact.firstName +  " " + contact.lastName
 
-      val dateView : TextView = v.findViewById(R.id.upcoming_date)
+      val dateView : TextView = v.findViewById(R.id.contact_birthday)
       dateView.text = contact.birthday
       dateView.setTextColor(Color.parseColor("#000000"))
 
       val switchView : Switch = v.findViewById(R.id.contact_switch)
       switchView.isChecked = contact.enabled
 
-      val list : LinearLayout = fragmentView.findViewById(R.id.upcoming_birthdays_list)
-      list.addView(v, index)
+      switchView.setOnCheckedChangeListener  { _, isChecked ->
+        Data.contactsMap[contact.id]!!.enabled = isChecked
+
+        if (isChecked) Data.numEnabled++
+        else Data.numEnabled--
+
+        updateCount(Data.numEnabled)
+      }
+
+      upcomingList = fragmentView.findViewById(R.id.upcoming_birthdays_list)
+      upcomingList.addView(v, index)
     }
 
+    updateCount(Data.numEnabled)
+
     return fragmentView
+  }
+
+  private fun updateCount(count: Int) {
+    timePrefixView.text = resources.getQuantityString(R.plurals.time_header, count, count)
   }
 
   private fun setTime(cal: Calendar, view: View) {
@@ -101,8 +145,6 @@ class TimeFragment : Fragment() {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment TimeFragment.
      */
     // TODO: Rename and change types and number of parameters

@@ -6,7 +6,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         app:cardElevation="2dp"
-        app:cardCornerRadius="2dp"
+        app:cardCornerRadius="@dimen/card_radius"
         app:cardPreventCornerOverlap="false"
         app:layout_constraintTop_toTopOf="parent">
 

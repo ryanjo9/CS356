@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/message_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -15,29 +16,42 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="10dp"
-            android:id="@+id/container1"
+            android:id="@+id/message_content_linear_layout"
             android:gravity="center"
     >
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/time_prefix"
+                android:id="@+id/default_message_prefix"
                 android:textColor="#000"
                 android:textSize="19sp"
+                android:text="@string/default_message_prefix"
                 android:gravity="center"
                 android:paddingBottom="8dp"
                 android:textAlignment="center"/>
 
         <TextView
-                android:layout_width="174dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/time_input"
-                android:text="@string/default_time"
+                android:id="@+id/default_message_content"
+                android:text="@string/default_message_no_comma"
                 android:textColor="#000"
-                android:textSize="30sp"
+                android:textSize="24sp"
+                android:padding="8dp"
                 android:gravity="center"
-                android:background="@drawable/border"
+                android:background="@drawable/message"
                 android:textAlignment="center"/>
 
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/include_name_instruction"
+                android:text="@string/include_name_instruction"
+                android:textColor="#000"
+                android:textSize="14sp"
+                android:textStyle="italic"
+                android:padding="8dp"
+                android:gravity="center"
+                android:textAlignment="center"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

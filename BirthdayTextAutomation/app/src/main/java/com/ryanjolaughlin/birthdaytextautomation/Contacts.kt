@@ -10,7 +10,7 @@ import android.content.ContentUris
 
 
 object Contacts {
-  fun getAllContacts(cr: ContentResolver) : ArrayList<Contact> {
+  fun getAllContacts(cr: ContentResolver) : HashMap<String, Contact> {
     val contacts = HashMap<String, Contact>()
 
     //#region get phone numbers
@@ -70,6 +70,8 @@ object Contacts {
       val given = nameCur.getString(nameCur.getColumnIndex(CommonDataKinds.StructuredName.GIVEN_NAME))
       val family = nameCur.getString(nameCur.getColumnIndex(CommonDataKinds.StructuredName.FAMILY_NAME))
       val nId = nameCur.getString(nameCur.getColumnIndex(CommonDataKinds.Identity.CONTACT_ID))
+      val lookupKey = nameCur.getString(nameCur.getColumnIndex(CommonDataKinds.Identity.LOOKUP_KEY))
+
       var birthday = ""
       val bdc = cr.query(
         ContactsContract.Data.CONTENT_URI,
@@ -83,12 +85,13 @@ object Contacts {
       }
       bdc.close()
 
+      contacts[nId]?.lookupKey = lookupKey
       contacts[nId]?.firstName = given
       contacts[nId]?.lastName = if (family != null) family else ""
       contacts[nId]?.birthday = if (birthday.isNotEmpty()) birthday else ""
     }
     nameCur.close()
 
-    return ArrayList(contacts.values)
+    return contacts
   }
 }
