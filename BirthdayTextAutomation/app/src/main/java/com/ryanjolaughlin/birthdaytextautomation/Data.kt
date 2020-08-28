@@ -1,12 +1,14 @@
 package com.ryanjolaughlin.birthdaytextautomation
 
 import android.content.ContentResolver
+import com.ryanjolaughlin.birthdaytextautomation.device.Contacts
 import com.ryanjolaughlin.birthdaytextautomation.model.Contact
+import com.ryanjolaughlin.birthdaytextautomation.model.Enabled
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.math.max
 import kotlin.math.min
+import com.ryanjolaughlin.birthdaytextautomation.dao.AppDatabase
 
 object Data {
   var contactsMap : MutableMap<String, Contact> = HashMap()
@@ -15,11 +17,16 @@ object Data {
   var numEnabled = 0
   var lastUpdated = Date()
   var contactsRecyclerPosition = 0
+  lateinit var db : AppDatabase
 
-  fun loadContacts(cr: ContentResolver) {
+  fun loadContacts(cr: ContentResolver, enabledIds: List<Enabled>) {
     // query contact contract
     numEnabled = 0
     contactsMap = Contacts.getAllContacts(cr)
+
+    enabledIds.forEach { it ->
+      contactsMap[it.id]!!.enabled = true
+    }
 
     contactsMap.values.sortedWith(compareBy{ it.birthday }).map{
       if (it.birthday.isNotEmpty()) {
@@ -59,4 +66,6 @@ object Data {
       i++
     }
   }
+
+
 }
