@@ -1,4 +1,4 @@
-package com.ryanjolaughlin.birthdaytextautomation
+package com.ryanjolaughlin.birthdaytextautomation.device
 
 import android.provider.ContactsContract
 import com.ryanjolaughlin.birthdaytextautomation.model.Contact
@@ -6,8 +6,6 @@ import android.content.ContentResolver
 import android.provider.ContactsContract.CommonDataKinds
 import android.provider.ContactsContract.CommonDataKinds.Event.TYPE_BIRTHDAY
 import android.content.ContentUris
-
-
 
 object Contacts {
   fun getAllContacts(cr: ContentResolver) : HashMap<String, Contact> {

@@ -1,7 +1,6 @@
 package com.ryanjolaughlin.birthdaytextautomation
 
 import android.app.TimePickerDialog
-import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
@@ -13,13 +12,8 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Switch
 import android.widget.TextView
-import androidx.cardview.widget.CardView
-import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.get
-import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
-import org.w3c.dom.Text
+import com.ryanjolaughlin.birthdaytextautomation.model.Enabled
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -115,8 +109,14 @@ class TimeFragment : Fragment() {
       switchView.setOnCheckedChangeListener  { _, isChecked ->
         Data.contactsMap[contact.id]!!.enabled = isChecked
 
-        if (isChecked) Data.numEnabled++
-        else Data.numEnabled--
+        if (isChecked) {
+          Data.numEnabled++
+          Data.db.enabledDao().insert(Enabled(contact.id))
+        }
+        else {
+          Data.numEnabled--
+          Data.db.enabledDao().delete(contact.id)
+        }
 
         updateCount(Data.numEnabled)
       }

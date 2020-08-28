@@ -8,13 +8,11 @@ import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.ryanjolaughlin.birthdaytextautomation.model.Contact
 import kotlinx.android.synthetic.main.contact.view.*
-import android.app.Activity
-import androidx.core.app.ActivityCompat.startActivityForResult
+import com.ryanjolaughlin.birthdaytextautomation.model.Enabled
 
 
 class ContactsRecyclerAdapter(private val items: List<String>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -45,7 +43,7 @@ class ContactsRecyclerAdapter(private val items: List<String>) : RecyclerView.Ad
       // Set Photo
       contact_photo.setImageURI(Uri.parse(contact.photoUri))
       contact_photo.clipToOutline = true
-      if(contact_photo.drawable == null) contact_photo.setImageResource(R.drawable.ic_tag_faces_black_24dp);
+      if(contact_photo.drawable == null) contact_photo.setImageResource(R.drawable.ic_tag_faces_black_24dp)
 
       // Set Name
       contact_name.text = contact.firstName + " " + contact.lastName
@@ -63,8 +61,14 @@ class ContactsRecyclerAdapter(private val items: List<String>) : RecyclerView.Ad
 
           Data.contactsMap[contact.id]!!.enabled = !prev
 
-          if (prev) Data.numEnabled--
-          else Data.numEnabled++
+          if (prev) {
+            Data.numEnabled--
+            Data.db.enabledDao().delete(contact.id)
+          }
+          else {
+            Data.numEnabled++
+            Data.db.enabledDao().insert(Enabled(contact.id))
+          }
         }
 
       } else {
@@ -76,7 +80,7 @@ class ContactsRecyclerAdapter(private val items: List<String>) : RecyclerView.Ad
       }
 
       contact_birthday.setOnClickListener {
-          println("Adding birthday for id: " + contact.id)
+//          println("Adding birthday for id: " + contact.id)
           val longId = contact.id.toLong()
           val selectedContactUri = ContactsContract.Contacts.getLookupUri(longId, contact.lookupKey)
 

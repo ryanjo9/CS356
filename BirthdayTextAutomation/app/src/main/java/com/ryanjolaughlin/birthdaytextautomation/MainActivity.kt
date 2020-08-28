@@ -6,15 +6,15 @@ import android.os.Bundle
 import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.content.Intent
 import androidx.fragment.app.Fragment
-import androidx.viewpager.widget.ViewPager
+import androidx.room.Room
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.android.synthetic.main.activity_main.*
+import com.ryanjolaughlin.birthdaytextautomation.dao.AppDatabase
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -23,6 +23,9 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
+
+//    val address = DebugDB.getAddressLog()
+//    println("Address " + address)
 
     val tabLayout = findViewById<TabLayout>(R.id.tab_layout)
 
@@ -60,14 +63,22 @@ class MainActivity : AppCompatActivity() {
       println("\n\n\nPermission not granted\n\n\n")
     }
 
-    Data.loadContacts(contentResolver)
+    Data.db = Room.databaseBuilder(
+      this.applicationContext,
+      AppDatabase::class.java, "enabled"
+    ).allowMainThreadQueries().build()
+
+    val enabledIds = Data.db.enabledDao().loadAll()
+
+    Data.loadContacts(contentResolver, enabledIds)
   }
 
   public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
     when (requestCode) {
         EDIT_REQUEST_CODE->{
-          Data.loadContacts(contentResolver)
+          val enabledIds = Data.db.enabledDao().loadAll()
+          Data.loadContacts(contentResolver, enabledIds)
 //          supportFragmentManager
 //            .beginTransaction()
 //            .replace(R.id.main_content, ContactsFragment.newInstance(), "contacts")
