@@ -13,6 +13,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ryanjolaughlin.birthdaytextautomation.model.Contact
 import kotlinx.android.synthetic.main.contact.view.*
 import com.ryanjolaughlin.birthdaytextautomation.model.Enabled
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.launch
 
 
 class ContactsRecyclerAdapter(private val items: List<String>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -63,11 +66,15 @@ class ContactsRecyclerAdapter(private val items: List<String>) : RecyclerView.Ad
 
           if (prev) {
             Data.numEnabled--
-            Data.db.enabledDao().delete(contact.id)
+            CoroutineScope(IO).launch {
+              Data.db.enabledDao().delete(contact.id)
+            }
           }
           else {
             Data.numEnabled++
+          CoroutineScope(IO).launch{
             Data.db.enabledDao().insert(Enabled(contact.id))
+          }
           }
         }
 
@@ -81,22 +88,23 @@ class ContactsRecyclerAdapter(private val items: List<String>) : RecyclerView.Ad
 
       contact_birthday.setOnClickListener {
 //          println("Adding birthday for id: " + contact.id)
-          val longId = contact.id.toLong()
-          val selectedContactUri = ContactsContract.Contacts.getLookupUri(longId, contact.lookupKey)
+        val longId = contact.id.toLong()
+        val selectedContactUri = ContactsContract.Contacts.getLookupUri(longId, contact.lookupKey)
 
-          // Creates a new Intent to edit a contact
-          val editIntent = Intent(Intent.ACTION_EDIT).apply {
-            /*
-           * Sets the contact URI to edit, and the data type that the
-           * Intent must match
-           */
-            setDataAndType(selectedContactUri, ContactsContract.Contacts.CONTENT_ITEM_TYPE)
+        // Creates a new Intent to edit a contact
+        val editIntent = Intent(Intent.ACTION_EDIT).apply {
+          /*
+         * Sets the contact URI to edit, and the data type that the
+         * Intent must match
+         */
+          setDataAndType(selectedContactUri, ContactsContract.Contacts.CONTENT_ITEM_TYPE)
           }
 
           // Sets the special extended data for navigation
           editIntent.putExtra("finishActivityOnSaveCompleted", true)
           // Sends the Intent
-          (context as MainActivity).startActivityForResult(editIntent, EDIT_REQUEST_CODE)
+          (context as MainActivity).supportFragmentManager.fragments[1].startActivityForResult(editIntent, EDIT_REQUEST_CODE)
+//          (context as MainActivity).startActivityForResult(editIntent, EDIT_REQUEST_CODE)
         }
 
 

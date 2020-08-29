@@ -8,7 +8,7 @@ import android.provider.ContactsContract.CommonDataKinds.Event.TYPE_BIRTHDAY
 import android.content.ContentUris
 
 object Contacts {
-  fun getAllContacts(cr: ContentResolver) : HashMap<String, Contact> {
+  suspend fun getAllContacts(cr: ContentResolver) : HashMap<String, Contact> {
     val contacts = HashMap<String, Contact>()
 
     //#region get phone numbers

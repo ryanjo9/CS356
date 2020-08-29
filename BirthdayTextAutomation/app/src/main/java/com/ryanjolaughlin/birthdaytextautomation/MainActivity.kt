@@ -8,13 +8,10 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import android.content.Intent
 import androidx.fragment.app.Fragment
-import androidx.room.Room
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import com.ryanjolaughlin.birthdaytextautomation.dao.AppDatabase
-
 
 
 class MainActivity : AppCompatActivity() {
@@ -62,29 +59,26 @@ class MainActivity : AppCompatActivity() {
         1)
       println("\n\n\nPermission not granted\n\n\n")
     }
-
-    Data.db = Room.databaseBuilder(
-      this.applicationContext,
-      AppDatabase::class.java, "enabled"
-    ).allowMainThreadQueries().build()
-
-    val enabledIds = Data.db.enabledDao().loadAll()
-
-    Data.loadContacts(contentResolver, enabledIds)
   }
 
   public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
-    when (requestCode) {
-        EDIT_REQUEST_CODE->{
-          val enabledIds = Data.db.enabledDao().loadAll()
-          Data.loadContacts(contentResolver, enabledIds)
-//          supportFragmentManager
-//            .beginTransaction()
-//            .replace(R.id.main_content, ContactsFragment.newInstance(), "contacts")
-//            .commit()
-        }
-    }
+//    when (requestCode) {
+//        EDIT_REQUEST_CODE->{
+//          CoroutineScope(IO).launch{
+//            val contactsFragment = supportFragmentManager.findFragmentByTag("android:switcher:${R.id.pager}:1") as ContactsFragment
+//
+////            val viewPager = findViewById<ViewPager2>(R.id.pager)
+////            val contactsFragment = viewPager.contacts_fragment as ContactsFragment
+//            Data.loadContacts(contentResolver)
+//            contactsFragment.updateBirthdays()
+//          }
+////          supportFragmentManager
+////            .beginTransaction()
+////            .replace(R.id.main_content, ContactsFragment.newInstance(), "contacts")
+////            .commit()
+//        }
+//    }
 
   }
 }

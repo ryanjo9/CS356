@@ -1,6 +1,7 @@
 package com.ryanjolaughlin.birthdaytextautomation
 
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,11 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_contacts.view.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.*
 
 
@@ -26,6 +32,26 @@ class ContactsFragment : Fragment() {
   private lateinit var contactsAdapter: ContactsRecyclerAdapter
   private lateinit var recyclerView: RecyclerView
 
+  private suspend fun updateAdapter() {
+    withContext(Main) {
+      recyclerView.adapter!!.notifyDataSetChanged()
+    }
+  }
+
+  fun updateBirthdays() {
+    CoroutineScope(Dispatchers.IO).launch{
+      Data.loadContacts(activity!!.contentResolver)
+      updateAdapter()
+    }
+  }
+
+  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    super.onActivityResult(requestCode, resultCode, data)
+    CoroutineScope(Dispatchers.IO).launch{
+      Data.loadContacts(activity!!.contentResolver)
+      updateBirthdays()
+    }
+  }
   override fun onResume() {
     super.onResume()
 
