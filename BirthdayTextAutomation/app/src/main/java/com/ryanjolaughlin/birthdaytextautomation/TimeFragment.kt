@@ -14,6 +14,9 @@ import android.widget.Switch
 import android.widget.TextView
 import androidx.core.view.get
 import com.ryanjolaughlin.birthdaytextautomation.model.Enabled
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -111,11 +114,15 @@ class TimeFragment : Fragment() {
 
         if (isChecked) {
           Data.numEnabled++
-          Data.db.enabledDao().insert(Enabled(contact.id))
+          CoroutineScope(IO).launch{
+            Data.db.enabledDao().insert(Enabled(contact.id))
+          }
         }
         else {
           Data.numEnabled--
-          Data.db.enabledDao().delete(contact.id)
+          CoroutineScope(IO).launch {
+            Data.db.enabledDao().delete(contact.id)
+          }
         }
 
         updateCount(Data.numEnabled)

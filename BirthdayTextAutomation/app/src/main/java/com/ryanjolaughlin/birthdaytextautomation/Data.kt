@@ -9,6 +9,10 @@ import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.min
 import com.ryanjolaughlin.birthdaytextautomation.dao.AppDatabase
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.async
+import kotlinx.coroutines.runBlocking
+import kotlin.collections.HashMap
 
 object Data {
   var contactsMap : MutableMap<String, Contact> = HashMap()
@@ -19,14 +23,29 @@ object Data {
   var contactsRecyclerPosition = 0
   lateinit var db : AppDatabase
 
-  fun loadContacts(cr: ContentResolver, enabledIds: List<Enabled>) {
+  private fun fetchContactData(cr: ContentResolver): HashMap<String, Contact> = runBlocking {
+    val contactsMap: Deferred<HashMap<String, Contact>> = async {
+      Contacts.getAllContacts(cr)
+    }
+
+    val enabledIds: Deferred<List<Enabled>> = async {
+      db.enabledDao().loadAll()
+    }
+
+    mergeData(contactsMap.await(), enabledIds.await())
+  }
+
+  private fun mergeData(map: HashMap<String, Contact>, enabledIds: List<Enabled>): HashMap<String, Contact> {
+    enabledIds.forEach { it ->
+      map[it.id]!!.enabled = true
+    }
+    return map
+  }
+
+  fun loadContacts(cr: ContentResolver) {
     // query contact contract
     numEnabled = 0
-    contactsMap = Contacts.getAllContacts(cr)
-
-    enabledIds.forEach { it ->
-      contactsMap[it.id]!!.enabled = true
-    }
+    contactsMap = fetchContactData(cr)
 
     contactsMap.values.sortedWith(compareBy{ it.birthday }).map{
       if (it.birthday.isNotEmpty()) {
@@ -66,6 +85,5 @@ object Data {
       i++
     }
   }
-
 
 }
