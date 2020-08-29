@@ -47,16 +47,6 @@ object Data {
     numEnabled = 0
     contactsMap = fetchContactData(cr)
 
-//    runBlocking {
-//      val contactsMap: Deferred<HashMap<String, Contact>> = async {
-//        Contacts.getAllContacts(cr)
-//      }
-//
-//      val enabledIds: Deferred<List<Enabled>> = async {
-//        db.enabledDao().loadAll()
-//      }
-//    }
-
     contactsMap.values.sortedWith(compareBy{ it.birthday }).map{
       if (it.birthday.isNotEmpty()) {
         val tokens = it.birthday.split("-")

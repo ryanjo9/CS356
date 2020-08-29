@@ -63,22 +63,5 @@ class MainActivity : AppCompatActivity() {
 
   public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
-//    when (requestCode) {
-//        EDIT_REQUEST_CODE->{
-//          CoroutineScope(IO).launch{
-//            val contactsFragment = supportFragmentManager.findFragmentByTag("android:switcher:${R.id.pager}:1") as ContactsFragment
-//
-////            val viewPager = findViewById<ViewPager2>(R.id.pager)
-////            val contactsFragment = viewPager.contacts_fragment as ContactsFragment
-//            Data.loadContacts(contentResolver)
-//            contactsFragment.updateBirthdays()
-//          }
-////          supportFragmentManager
-////            .beginTransaction()
-////            .replace(R.id.main_content, ContactsFragment.newInstance(), "contacts")
-////            .commit()
-//        }
-//    }
-
   }
 }
