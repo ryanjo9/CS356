@@ -16,7 +16,8 @@ import com.ryanjolaughlin.birthdaytextautomation.model.Enabled
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
-
+import com.amulyakhare.textdrawable.*
+import com.amulyakhare.textdrawable.util.ColorGenerator
 
 class ContactsRecyclerAdapter(private val items: List<String>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -46,7 +47,12 @@ class ContactsRecyclerAdapter(private val items: List<String>) : RecyclerView.Ad
       // Set Photo
       contact_photo.setImageURI(Uri.parse(contact.photoUri))
       contact_photo.clipToOutline = true
-      if(contact_photo.drawable == null) contact_photo.setImageResource(R.drawable.ic_tag_faces_black_24dp)
+      if(contact_photo.drawable == null) {
+        val colorGenerator = ColorGenerator.MATERIAL
+        val textDrawable = TextDrawable.builder().buildRound(contact.firstName[0].toString(), colorGenerator.getColor(contact.firstName + contact.lastName))
+
+        contact_photo.setImageDrawable(textDrawable)
+      }
 
       // Set Name
       contact_name.text = contact.firstName + " " + contact.lastName

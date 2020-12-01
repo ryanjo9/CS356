@@ -13,6 +13,8 @@ import android.widget.LinearLayout
 import android.widget.Switch
 import android.widget.TextView
 import androidx.core.view.get
+import com.amulyakhare.textdrawable.TextDrawable
+import com.amulyakhare.textdrawable.util.ColorGenerator
 import com.ryanjolaughlin.birthdaytextautomation.model.Enabled
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
@@ -97,7 +99,13 @@ class TimeFragment : Fragment() {
       val upcomingPhoto : ImageView = v.findViewById(R.id.contact_photo)
       upcomingPhoto.setImageURI(Uri.parse(contact!!.photoUri))
 
-      if(upcomingPhoto.drawable == null) upcomingPhoto.setImageResource(R.drawable.ic_tag_faces_black_24dp)
+      upcomingPhoto.clipToOutline = true
+      if(upcomingPhoto.drawable == null) {
+        val colorGenerator = ColorGenerator.MATERIAL
+        val textDrawable = TextDrawable.builder().buildRound(contact.firstName[0].toString(), colorGenerator.getColor(contact.firstName + contact.lastName))
+
+        upcomingPhoto.setImageDrawable(textDrawable)
+      }
 
       val nameView : TextView = v.findViewById(R.id.contact_name)
       nameView.text = contact.firstName +  " " + contact.lastName
