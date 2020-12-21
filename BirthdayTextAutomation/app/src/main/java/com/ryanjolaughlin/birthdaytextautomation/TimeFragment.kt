@@ -1,6 +1,11 @@
 package com.ryanjolaughlin.birthdaytextautomation
 
 import android.app.TimePickerDialog
+import android.app.job.JobInfo
+import android.app.job.JobScheduler
+import android.content.ComponentName
+import android.content.Context
+import android.content.Context.JOB_SCHEDULER_SERVICE
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
@@ -16,9 +21,11 @@ import androidx.core.view.get
 import com.amulyakhare.textdrawable.TextDrawable
 import com.amulyakhare.textdrawable.util.ColorGenerator
 import com.ryanjolaughlin.birthdaytextautomation.model.Enabled
+import com.ryanjolaughlin.birthdaytextautomation.texting.TextService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -35,6 +42,12 @@ class TimeFragment : Fragment() {
   private lateinit var timePrefixView: TextView
   private lateinit var upcomingList : LinearLayout
   private var includeFirstName : Boolean = false
+
+  private val MS_IN_SECONDS = 1000
+  private val SECONDS_IN_MINUTES = 60
+  private val MINUTES_IN_HOUR = 60
+  private val HOURS_IN_DAY = 24
+  private val JOB_ID = 945
 
   override fun onResume() {
     super.onResume()
@@ -117,23 +130,25 @@ class TimeFragment : Fragment() {
       val switchView : Switch = v.findViewById(R.id.contact_switch)
       switchView.isChecked = contact.enabled
 
-      switchView.setOnCheckedChangeListener  { _, isChecked ->
-        Data.contactsMap[contact.id]!!.enabled = isChecked
+      switchView.setOnCheckedChangeListener  { v, isChecked ->
+        if (v.isPressed) {
 
-        if (isChecked) {
-          Data.numEnabled++
-          CoroutineScope(IO).launch{
-            Data.db.enabledDao().insert(Enabled(contact.id))
-          }
-        }
-        else {
-          Data.numEnabled--
-          CoroutineScope(IO).launch {
-            Data.db.enabledDao().delete(contact.id)
-          }
-        }
+          Data.contactsMap[contact.id]!!.enabled = isChecked
 
-        updateCount(Data.numEnabled)
+          if (isChecked) {
+            Data.numEnabled++
+            CoroutineScope(IO).launch {
+              Data.db.enabledDao().insert(Enabled(contact.id))
+            }
+          } else {
+            Data.numEnabled--
+            CoroutineScope(IO).launch {
+              Data.db.enabledDao().delete(contact.id)
+            }
+          }
+
+          updateCount(Data.numEnabled)
+        }
       }
 
       upcomingList = fragmentView.findViewById(R.id.upcoming_birthdays_list)
@@ -153,6 +168,27 @@ class TimeFragment : Fragment() {
     val inputTextView: TextView = view.findViewById(R.id.time_input)
     inputTextView.text = SimpleDateFormat("HH:mm").format(cal.time)
     // TODO: Change time that alarm is scheduled for
+    cancelJob(view)
+    scheduleJob(view)
+  }
+
+  private fun scheduleJob(view: View) {
+    val jobInfo = JobInfo.Builder(JOB_ID, ComponentName(context!!,TextService::class.java))
+      .setPeriodic((MS_IN_SECONDS * SECONDS_IN_MINUTES * MINUTES_IN_HOUR * HOURS_IN_DAY).toLong())
+      .setPersisted(true)
+      .build()
+
+    try {
+      val jobScheduler = context!!.getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
+      jobScheduler.schedule(jobInfo)
+    } catch (e: Exception) {
+      print(e)
+    }
+  }
+
+  private fun cancelJob(view: View) {
+    val jobScheduler = context!!.getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
+    jobScheduler.cancel(JOB_ID)
   }
 
   companion object {
