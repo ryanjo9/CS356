@@ -10,6 +10,7 @@ import android.content.Intent
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.amitshekhar.DebugDB
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -21,8 +22,8 @@ class MainActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
 
-//    val address = DebugDB.getAddressLog()
-//    println("Address " + address)
+    val address = DebugDB.getAddressLog()
+    println("Address " + address)
 
     val tabLayout = findViewById<TabLayout>(R.id.tab_layout)
 
@@ -56,6 +57,15 @@ class MainActivity : AppCompatActivity() {
 
       ActivityCompat.requestPermissions(this,
         arrayOf(Manifest.permission.READ_CONTACTS),
+        1)
+      println("\n\n\nPermission not granted\n\n\n")
+    }
+
+    while (ContextCompat.checkSelfPermission(this,
+        Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_DENIED) {
+
+      ActivityCompat.requestPermissions(this,
+        arrayOf(Manifest.permission.SEND_SMS),
         1)
       println("\n\n\nPermission not granted\n\n\n")
     }
